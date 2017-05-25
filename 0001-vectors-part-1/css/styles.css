@@ -1,0 +1,7 @@
+.reveal section .arrow {
+  border: none;
+  -ms-transform: rotate(230deg);
+  -webkit-transform: rotate(230deg);
+  transform: rotate(230deg);
+  width: 200px;
+}
