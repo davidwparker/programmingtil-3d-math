@@ -15,8 +15,10 @@ View at: http://localhost:8080/
 
 ## CONCEPTS:
 
-* Vectors
+* Vectors: what are they?
 
 ## RESOURCES:
 
-* https://github.com/davidwparker/programmingtil-3d-math/tree/master/0001-vectors-part-1
+* Code / Slides: https://github.com/davidwparker/programmingtil-3d-math/tree/master/0001-vectors-part-1
+* Slides JS: https://github.com/hakimel/reveal.js/
+* Math JS: https://www.mathjax.org/
