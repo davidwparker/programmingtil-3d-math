@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vectors Part 1</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Vectors Part 1<br>
+          What are vectors
+        </section>
+        <section>
+          A vector is a list (or array) of numbers.
+        </section>
+        <section>
+          Dimension of a vector is how many numbers it contains.<br>
+          We mostly care about 2D, 3D, and 4D vectors.
+        </section>
+        <section>
+          Notation<br>
+          Horizontal (row vector): $[0,1,2]$<br>
+          Vertical (column vector): $\left[ \begin{smallmatrix} 0 \\ 1 \\ 2 \end{smallmatrix} \right]$
+        </section>
+        <section>
+          2d: $x, y$<br>
+          3d: $x, y, z$<br>
+          4d: $x, y, z, w$<br>
+        </section>
+        <section>
+          Examples<br>
+          2d: $x, y$<br>
+          $a = \left[ \begin{smallmatrix} 0 \\ 1 \end{smallmatrix} \right]$<br>
+          $a_1 = a_x = 0$<br>
+          $a_2 = a_y = 1$<br>
+        </section>
+        <section>
+          Examples<br>
+          3d: $x, y, z$<br>
+          $a = \left[ \begin{smallmatrix} 0 \\ 1 \\ 2 \end{smallmatrix} \right]$<br>
+          $a_1 = a_x = 0$<br>
+          $a_2 = a_y = 1$<br>
+          $a_3 = a_z = 2$<br>
+        </section>
+        <section>
+          Examples<br>
+          4d: $x, y, z, w$<br>
+          $a = \left[ \begin{smallmatrix} 0 \\ 1 \\ 2 \\ 3 \end{smallmatrix} \right]$<br>
+          $a_1 = a_x = 0$<br>
+          $a_2 = a_y = 1$<br>
+          $a_3 = a_z = 2$<br>
+          $a_4 = a_w = 3$<br>
+        </section>
+        <section>
+          A vector is just a directed line segment with magnitude and direction
+        </section>
+        <section>
+          Magnitude is the length of the vector
+        </section>
+        <section>
+          Direction is the way the vector is pointing in space
+        </section>
+        <section>
+          Illustration<br>
+          <img src="images/arrow.png" class="arrow"/>
+        </section>
+        <section>
+          Displacement: "walk backwards two steps"
+        </section>
+        <section>
+          Velocity: "the train is going South at 20MPH"
+        </section>
+        <section>
+          Displacement and velocity are different than distance and speed.
+          The former two are vector quantities and have a direction.
+          The latter two are scalar quantities and do not have a direction.
+        </section>
+        <section>
+          Vectors are numbered with a signed displacement.<br>
+          In 2D: $[1,2]$ means to $x$ is forward $1$ and $y$ is up $2$
+        </section>
+        <section>
+          Vectors can be represented by a sequence of displacements.<br>
+          In the previous 2D example: the sequence $[1,0]$, $[0,2]$ would result in the same $[1,2]$
+        </section>
+        <section>
+          A vector is different than a point. A point specifies location, whereas
+          a vector specifies magnitude and direction.
+        </section>
+        <section>
+          The point $(2,1)$ can be reached given the vector $[2,1]$, relative
+          to the origin of the coordinate system.
+        </section>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
