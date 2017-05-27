@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vectors Part 3</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Vectors Part 3<br>
+          Vector Operations<br>
+          Distance Formula
+        </section>
+        <section>
+          The Distance Formula<br>
+          $d = b-a = \left[ \begin{smallmatrix} b_x-a_x \\ b_y-a_y \\ b_z-a_z \end{smallmatrix} \right]$
+        </section>
+        <section>
+          $distance(a,b) = \left\Vert d\right\Vert = \sqrt{d_x^2 +d_y^2+d_z^2}$<br><br>
+          Substituing d:<br>
+          $distance(a,b) = \left\Vert b-a\right\Vert = $<br><br>
+          $\sqrt{(b-a)_x^2 +(b-a)_y^2+(b-a)_z^2}$<br>
+        </section>
+        <section>
+          Example<br>
+          $distance([2\:3],[8\:-5]) = \left\Vert b-a\right\Vert$<br><br>
+          $= \sqrt{(8-2)^2 + (-5-3)^2}$<br>
+          $= \sqrt{6^2 + 8^2}$<br>
+          $= \sqrt{36 + 64}$<br>
+          $= \sqrt{100}$<br>
+          $= 10$<br>
+        </section>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
