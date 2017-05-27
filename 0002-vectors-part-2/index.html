@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vectors Part 2</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Vectors Part 2<br>
+          Vector Operations<br>
+          Negation, Magnitude, Normals, Addition, Subtraction
+        </section>
+        <section>
+          Zero Vector<br>
+          0 = $\left[ \begin{smallmatrix} 0 \\ 0 \\ . \\ . \\ . \\ 0 \end{smallmatrix} \right]$
+          <br>
+          Special as it's the only vector with a magnitude of zero and direction of zero.
+        </section>
+        <section>
+          Negation<br>
+          $additive$ $inverse$ of $x$ -> ($-x$) is the element that yields the zero when added to $x$.<br>
+          $x + (-x) = 0$
+        </section>
+        <section>
+          Negating a vector<br>
+          $-\left[ \begin{smallmatrix} a_1 \\ a_2 \\ . \\ . \\ . \\ a_n \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} -a_1 \\ -a_2 \\ . \\ . \\ . \\ -a_n \end{smallmatrix} \right]$
+        </section>
+        <section>
+          Negating 2d, 3d, 4d<br>
+          $-[x\:y] = [-x\:-y]$<br>
+          $-[x\:y\:z] = [-x\:-y\:-z]$<br>
+          $-[x\:y\:z\:w] = [-x\:-y\:-z\:-w]$
+        </section>
+        <section>
+          Vector Magnitude<br>
+          Magnitude is also known as the length or norm.<br>
+          In Linear Algebra<br>
+          $\left\Vert v\right\Vert = \sqrt{\sum_{i=1}^n {v_i}^2}$
+        </section>
+        <section>
+          Examples<br>
+          2D, 3D<br>
+          $\left\Vert v\right\Vert = \sqrt{{v_x}^2+{v_y}^2}$<br>
+          $\left\Vert v\right\Vert = \sqrt{{v_x}^2+{v_y}^2+{v_z}^2}$
+        </section>
+        <section>
+          Examples<br>
+          3D: $\left\Vert [2 \:-3 \:4]\right\Vert$ <br>
+          $\sqrt{2^2+(-3)^2+4^2}$<br>
+          $\sqrt{4+9+16}$<br>
+          $\sqrt{29}$<br>
+        </section>
+        <section>
+          Vector Multiplication by a Scalar<br>
+          $k\left[ \begin{smallmatrix} a_1 \\ a_2 \\ . \\ . \\ . \\ a_n \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} a_1 \\ a_2 \\ . \\ . \\ . \\ a_n \end{smallmatrix} \right] k
+          = \left[ \begin{smallmatrix} ka_1 \\ ka_2 \\ . \\ . \\ . \\ ka_n \end{smallmatrix} \right]$
+        </section>
+        <section>
+          3D Example<br>
+          $k\left[ \begin{smallmatrix} x \\ y \\ z \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} x \\ y \\ z \end{smallmatrix} \right] k
+          = \left[ \begin{smallmatrix} kx \\ ky \\ kz \end{smallmatrix} \right]$
+        </section>
+        <section>
+          3D Example<br>
+          Can also be divided by a nonzero scalar
+          $\dfrac{v}{k} = \dfrac{1}{k}\left[ \begin{smallmatrix} x \\ y \\ z \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} x/k \\ y/k \\ z/k \end{smallmatrix} \right]$
+        </section>
+        <section>
+          Multiplication Notes<br>
+          <ul>
+            <li>No multiplication symbol</li>
+            <li>Scalar multiplied by vector (and division) happen before addition or subtraction</li>
+            <li>Scalar cannot be divided by a vector; vector cannot be divided by a vector</li>
+          </ul>
+        </section>
+        <section>
+          Normalized Vector<br>
+          <p>
+            Often, we care about direction but not the magnitude.<br>
+            So we use unit vectors.<br>
+            A unit vector is a vector with a magnitude of 1.<br>
+            A unit vector is also known as normalized vectors or normals.
+          </p>
+        </section>
+        <section>
+          Normalized Vector<br>
+          $v_{norm} = \dfrac{v}{\left\Vert v\right\Vert}, v \neq 0$
+        </section>
+        <section>
+          Vector Addition<br>
+          $ \left[ \begin{smallmatrix} a_1 \\ a_2 \\ . \\ . \\ . \\ a_n \end{smallmatrix} \right]
+          + \left[ \begin{smallmatrix} b_1 \\ b_2 \\ . \\ . \\ . \\ b_n \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} a_1+b_1 \\ a_2+b_2 \\ . \\ . \\ . \\ a_n+b_n \end{smallmatrix} \right]$
+        </section>
+        <section>
+          Vector Subtraction<br>
+          $ \left[ \begin{smallmatrix} a_1 \\ a_2 \\ . \\ . \\ . \\ a_n \end{smallmatrix} \right]
+          - \left[ \begin{smallmatrix} b_1 \\ b_2 \\ . \\ . \\ . \\ b_n \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} a_1-b_1 \\ a_2-b_2 \\ . \\ . \\ . \\ a_n-b_n \end{smallmatrix} \right]$
+        </section>
+        <section>
+          Example<br>
+          $ \left[ \begin{smallmatrix} 1 \\ 5 \\ 4 \end{smallmatrix} \right]
+          - \left[ \begin{smallmatrix} 4 \\ 3 \\ 0 \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} 1-4 \\ 5-3 \\ 4-0 \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} -3 \\ 2 \\ 4 \end{smallmatrix} \right]$
+        </section>
+        <section>
+          Addition/Subtraction Notes<br>
+          <ul>
+            <li>A vector cannot be added/subtracted with a scalar or vector of a different dimension</li>
+            <li>Vector addition is commutative, but vector subtraction is not. $a+b = b+a$, but $a-b = -(b-a)$... $a-b=b-a$ only $a=b$</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
