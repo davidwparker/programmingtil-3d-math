@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vectors Part 5</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Vectors Part 5<br>
+          Vector Operations<br>
+          Cross Product
+        </section>
+        <section>
+          Vector Cross Product<br>
+          <ul>
+            <li>Multiplying a vector by a vector</li>
+            <li>Also known as outer product</li>
+            <li>3D vectors only</li>
+            <li>Yields a 3D vector and is not commutative</li>
+          </ul>
+        </section>
+        <section>
+          Cross Product<br>
+          $ \left[ \begin{smallmatrix} x_1 \\ y_1 \\ z_1 \end{smallmatrix} \right]
+          \times
+          \left[ \begin{smallmatrix} x_2 \\ y_2 \\ z_2 \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} y_1z_2 - z_1y_2 \\ z_1x_2 - x_1z_2 \\ x_1y_2 - y_1x_2 \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Cross Product Example<br>
+          $ \left[ \begin{smallmatrix} 4 \\ 1 \\ 2 \end{smallmatrix} \right]
+          \times
+          \left[ \begin{smallmatrix} -3 \\ 7 \\ 9 \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} (1)(9) - (2)(7) \\ (2)(-3)-(4)(9) \\ (4)(7)-(1)(-3) \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} -5 \\ -42 \\ 31 \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Cross Product<br>
+          Yields a perpendicular vector to the original two vectors<br>
+          <img src="images/cross.png" class="proj"/>
+        </section>
+        <section>
+          Cross Product<br>
+          Its magnitude is equal to product of magnitudes of original vectors and the sine of the angle between them<br>
+          $\left\Vert a \times b \right\Vert = \left\Vert a \right\Vert \left\Vert b \right\Vert sin \theta$
+        </section>
+        <section>
+          Cross Product<br>
+          <p>
+            If either $a$ or $b$ are parallel, or is the zero vector then $a \times b = 0$<br>
+            The zero vector is parallel to every other vector (remember the zero vector
+            is perpendicular for the dot product)<br>
+          </p>
+        </section>
+        <section>
+          Cross Product<br>
+          <p>
+            Its direction depends on left-handed or right-handed coordinate system<br>
+            We determine by placing tail of $b$ to head of $a$ and determine whether
+            we turn clockwise or counterclockwise from $a$ to $b$.<br>
+            In left-hand, $a \times b$ points toward you if clockwise, and away if counterclockwise.<br>
+            In right-hand, it's the opposite.
+          </p>
+        </section>
+        <section>
+          Cross Product<br>
+          <ul>
+            <li>Anticommutative: $a \times b = -(b \times a)$</li>
+            <li>Not associative</li>
+            <li>$a \times a = 0$</li>
+            <li>$a \cdot (a \times b) = 0$ (because cross product produces perpendicular
+              vector and dot product of perpendicular is zero)</li>
+          </ul>
+        </section>
+        <section>
+          Cross Product<br>
+          Uses: creating a vector perpendicular to a plane, triangle, or polygon.
+        </section>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
