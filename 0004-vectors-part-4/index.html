@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vectors Part 4</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Vectors Part 4<br>
+          Vector Operations<br>
+          Dot Product, Projection
+        </section>
+        <section>
+          Vector Dot Product<br>
+          Multiplying a vector by a vector<br>
+          Also known as inner product<br>
+          Performed before + and -<br>
+          Denoted by $\cdot$
+        </section>
+        <section>
+          Dot product is the sum of the products of corresponding components<br>
+          $ \left[ \begin{smallmatrix} a_1 \\ a_2 \\ . \\ . \\ . \\ a_n \end{smallmatrix} \right]
+          \cdot \left[ \begin{smallmatrix} b_1 \\ b_2 \\ . \\ . \\ . \\ b_n \end{smallmatrix} \right]
+          = a_1b_1 + a_2b_2 + ... + a_nb_n$
+        </section>
+        <section>
+          Dot product Examples<br>
+          $a\cdot b = \sum_{i=1}^n a_ib_i$<br>
+          2D: $a\cdot b = a_xb_x + a_yb_y$<br>
+          3D: $a\cdot b = a_xb_x + a_yb_y + a_zb_z$<br>
+        </section>
+        <section>
+          Dot product is commutative $a\cdot b = b\cdot a$<br>
+          $a\cdot b = \sum_{i=1}^n a_ib_i$<br>
+          $[2\:3]\cdot[4\:-2] = (2)(4) + (3)(-2) = 2$<br>
+          $[4\:-2]\cdot[2\:3] = (4)(2) + (-2)(3) = 2$<br>
+        </section>
+        <section>
+          Dot product Geometrically<br>
+          It is related to the angle between two voctors.<br>
+          It is equal to the product of the magnitudes of the vectors and the
+          cosine of the angle between the vectors<br>
+          $a\cdot b = \left\Vert a \right\Vert \left\Vert b \right\Vert cos\:\theta$
+        </section>
+        <section>
+          Dot product Geometrically<br>
+          $\theta = a cos \left(\dfrac{a\cdot b} {\left\Vert a \right\Vert \left\Vert b \right\Vert} \right)$
+        </section>
+        <section>
+          Dot product Geometrically<br>
+          Note if a and b are unit vectors, we can avoid division. So we just have:<br>
+          $\theta = a cos \left(a\cdot b\right)$
+        </section>
+        <section>
+          Dot product Geometrically<br>
+          If we don't need the exact value, and just the relative orientation of $a$ and $b$,
+          then we just need the sign of the dot product.<br>
+        </section>
+        <section>
+          Dot product Geometrically<br>
+          <ul>
+            <li>$a\cdot b > 0$, $0^{\circ} \leq theta \lt 90^{\circ}$, angle is acute, $a$ and $b$ are pointing the same direction</li>
+            <li>$a\cdot b = 0$, $0^{\circ} \leq theta \lt 90^{\circ}$, angle is right, $a$ and $b$ perpendicular</li>
+            <li>$a\cdot b < 0$, $90^{\circ} \lt theta \leq 180^{\circ}$, angle is obtuse, $a$ and $b$ are pointing the opposite direction</li>
+          </ul>
+        </section>
+        <section>
+          Dot product Geometrically<br>
+          Note that the if $a$ or $b$ are the zero vector, then it will be zero. So the zero vector is perpendicular to every other vector.
+        </section>
+
+        <section>
+          Projecting a vector onto another<br>
+          With two vectors $v$ and $u$, there exists vectors $v_\Vert$ (or $p$) and
+          $v_\perp$ (or $q$) that are parallel and perpendincular to $u$.<br>
+          We can compute by using the Dot Product.
+        </section>
+        <section>
+          Projection<br>
+          <img src="images/proj.gif" class="proj"/>
+        </section>
+        <section>
+          Projection<br>
+          $v_\Vert = u \frac{\left\Vert v_\Vert \right\Vert} {\left\Vert u \right\Vert}$<br>
+          Using trig<br>
+          $cos \theta \left\Vert v \right\Vert = \left\Vert v_\Vert \right\Vert$
+        </section>
+        <section>
+          Projection<br>
+          Substiting from slide 5.<br>
+          $v_\Vert = u \frac{\left\Vert v \right\Vert cos \theta} {\left\Vert u \right\Vert}$<br>
+          $ = u \frac{\left\Vert v \right\Vert \left\Vert u \right\Vert cos \theta} {\left\Vert u \right\Vert^2}$<br>
+          $ = u \frac{v\cdot u} {\left\Vert u \right\Vert^2}$<br>
+        </section>
+        <section>
+          Projection<br>
+          If $u$ is a unit vector, division is unnecessary, so $v_\Vert$ is an easy solve. On to $v_\perp$<br>
+          $v_\perp + v_\Vert = v$<br>
+          $v_\perp = v - v_\Vert$<br>
+          $ = v - u \frac{v\cdot u} {\left\Vert u \right\Vert^2}$<br>
+        </section>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
