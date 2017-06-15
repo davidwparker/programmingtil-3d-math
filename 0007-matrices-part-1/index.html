@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrices Part 1</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrices Part 1<br>
+          What are Matrices
+        </section>
+        <section>
+          Overview<br>
+          Rectangular grid of numbers with rows and columns.<br>
+          Also known as a two-dimensional array of numbers.
+        </section>
+        <section>
+          Notation<br>
+          $r\times c$ matrix<br>
+          $r$ rows by $c$ columns
+        </section>
+        <section>
+          Notation Example<br>
+          $2\times 3$<br>
+          $
+          \left[ \begin{smallmatrix} 1 & 2 & 4\\ 2 & 3 & 121\end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Notation Example<br>
+          $
+          M = \left[ \begin{smallmatrix} m_{11} & m_{12} & m_{13} \\ m_{21} & m_{22} & m_{23} \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Square Matrices<br>
+          When Rows and Columns are the same number.<br>
+          $
+          M = \left[ \begin{smallmatrix} m_{11} & m_{12} & m_{13} \\ m_{21} & m_{22} & m_{23} \\ m_{31} & m_{32} & m_{33} \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Diagonal Matrices<br>
+          When all values are zero, except along the diagonal<br>
+          $
+          M = \left[ \begin{smallmatrix} 1 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 4 \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          A vector is a matrix<br>
+          Matrices can have any number of rows and columns, including one. Therefore, as we've seen before,
+          both column and row vectors are matrices:<br>
+          $n\times 1$ and $1\times n$
+        </section>
+        <section>
+          A vector is a matrix<br>
+          $
+          M1 = \left[ \begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix} \right]
+          M2 = \left[ \begin{smallmatrix} 1 & 0 & 0 \end{smallmatrix} \right]
+          $
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
