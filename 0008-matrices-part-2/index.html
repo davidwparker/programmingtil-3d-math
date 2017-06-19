@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrices Part 2</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrices Part 2<br>
+          Transposition<br>
+          Scalar Multiplication
+        </section>
+        <section>
+          Transposition
+        </section>
+        <section>
+          The transpose of a ($r\times c$) matrix $M$, denoted as $M^T$, is the
+          $c\times r$ matrix where each column is made up of the rows of M.<br>
+          $M^T_{ij} = M_{ji}$.
+        </section>
+        <section>
+          $
+          \left[ \begin{smallmatrix} m_{11} & m_{12} & m_{13} \\ m_{21} & m_{22} & m_{23} \end{smallmatrix} \right]^T
+          =
+          \left[ \begin{smallmatrix} m_{11} & m_{21} \\ m_{12} & m_{22} \\ m_{13} & m_{23} \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          $
+          \left[ \begin{smallmatrix} 3 & 4 & 2 \\ 7 & 9 & 1 \\ 5 & 6 & 8 \end{smallmatrix} \right]^T
+          =
+          \left[ \begin{smallmatrix} 3 & 7 & 5 \\ 4 & 9 & 6 \\ 2 & 1 & 8 \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Vector Transposition<br>
+          Row vectors become column vectors and vice versa.<br>
+          $
+          \left[ \begin{smallmatrix} 3 & 4 & 2 \end{smallmatrix} \right]^T
+          =
+          \left[ \begin{smallmatrix} 3 \\ 4 \\ 2 \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Transposition notes:<br>
+          <ul>
+            <li>$(M^T)^T = M$</li>
+            <li>$D^T = D$</li>
+          </ul>
+        </section>
+        <section>
+          Multiplication with a Scalar
+        </section>
+        <section>
+          $
+          M
+          =
+          k \left[ \begin{smallmatrix} m_{11} & m_{21} \\ m_{12} & m_{22} \\ m_{13} & m_{23} \end{smallmatrix} \right]
+          =
+          \left[ \begin{smallmatrix} km_{11} & km_{21} \\ km_{12} & km_{22} \\ km_{13} & km_{23} \end{smallmatrix} \right]
+          $
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
