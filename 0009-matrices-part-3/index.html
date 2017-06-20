@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrices Part 3</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrices Part 3<br>
+          Multiplying two matrices
+        </section>
+        <section>
+          Multiplication two Matrices
+        </section>
+        <section>
+          Matrix $M$ ($r\times n$) can multiply matrix $N$ ($n\times c$).<br>
+          The result $MN$ is $r\times c$.
+        </section>
+        <section>
+          Example:<br>
+          3x2 matrix multiply by 2x4<br>
+          $
+          \left[ \begin{smallmatrix} m_{11} & m_{12} \\ m_{21} & m_{22} \\ m_{31} & m_{32} \end{smallmatrix} \right]
+          \left[ \begin{smallmatrix} n_{11} & n_{12} & n_{13} & n_{14} \\ n_{21} & n_{22} & n_{23} & n_{24}\end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Example:<br>
+          Result is 3x4<br>
+          $
+          \left[ \begin{smallmatrix}
+            mn_{11} & mn_{12} & mn_{13} & mn_{14} \\
+            mn_{21} & mn_{22} & mn_{23} & mn_{24} \\
+            mn_{31} & mn_{32} & mn_{33} & mn_{34}
+          \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Each element of $MN$ (we'll use c instead of mn), <br>
+          is the vector dot product of the row $i$ of M with the column $j$ of N:<br>
+          $
+          c_{ij} =\sum_{i=1}^n a_{ik}b_{kj}
+          $
+        </section>
+        <section>
+          Example:<br>
+          $
+          \left[ \begin{smallmatrix} m_{11} & m_{12} \\ m_{21} & m_{22} \\ m_{31} & m_{32} \end{smallmatrix} \right]
+          \left[ \begin{smallmatrix} n_{11} & n_{12} & n_{13} & n_{14} \\ n_{21} & n_{22} & n_{23} & n_{24}\end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix}
+            c_{11} & c_{12} & c_{13} & c_{14} \\
+            c_{21} & c_{22} & c_{23} & c_{24} \\
+            c_{31} & c_{32} & c_{33} & c_{34}
+          \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Example:<br>
+          <div style="float:right;margin-right:25%">
+          $\left[ \begin{smallmatrix} n_{11} & n_{12} & n_{13} & n_{14} \\ n_{21} & n_{22} & n_{23} & n_{24}\end{smallmatrix} \right]$
+          </div>
+          <br style="clear:both;">
+          <div style="float:right;margin-right:25%">
+          $
+          \left[ \begin{smallmatrix} m_{11} & m_{12} \\ m_{21} & m_{22} \\ m_{31} & m_{32} \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix}
+            c_{11} & c_{12} & c_{13} & c_{14} \\
+            c_{21} & c_{22} & c_{23} & c_{24} \\
+            c_{31} & c_{32} & c_{33} & c_{34}
+          \end{smallmatrix} \right]
+          $
+          </div>
+          $c_{31} = m_{31}n_{11} + m_{32}n_{21}$
+          <br>
+          $c_{23} = m_{21}n_{13} + m_{22}n_{23}$
+        </section>
+        <section>
+          Example:<br>
+          $
+          \left[ \begin{smallmatrix} m_{11} & m_{12} & m_{13} \\ m_{21} & m_{22} & m_{23} \\ m_{31} & m_{32} & m_{33} \end{smallmatrix} \right]
+          \left[ \begin{smallmatrix} n_{11} & n_{12} & n_{13} \\ n_{21} & n_{22} & n_{23} \\ n_{31} & n_{32} & n_{33} \end{smallmatrix} \right]
+          $ = <br><br>
+          <div style="font-size:0.7em;">
+            $
+            \left[ \begin{smallmatrix}
+              m_{11}n_{11}+m_{12}n_{21}+m_{13}n_{31} & m_{11}n_{12}+m_{12}n_{22}+m_{13}n_{32} & m_{11}n_{13}+m_{12}n_{23}+m_{13}n_{33} \\
+              m_{21}n_{11}+m_{22}n_{21}+m_{23}n_{31} & m_{21}n_{12}+m_{22}n_{22}+m_{23}n_{32} & m_{21}n_{13}+m_{22}n_{23}+m_{23}n_{33} \\
+              m_{31}n_{11}+m_{32}n_{21}+m_{33}n_{31} & m_{31}n_{12}+m_{32}n_{22}+m_{33}n_{32} & m_{31}n_{13}+m_{32}n_{23}+m_{33}n_{33}
+            \end{smallmatrix} \right]
+            $
+          </div>
+        </section>
+        <section>
+          Notes<br>
+          <ul>
+            <li>$MI = IM = M$</li>
+            <li>Not commutative: $MN \neq NM$</li>
+            <li>Associative: $(MN)O = M(NO)$</li>
+            <li>Associates with vector/scalar: $(kM)N = k(MN) = M(kN)$ and $(vM)N = v(MN)$</li>
+            <li>Transpose of two matrices = product of transposes in reverse: $(AB)^T = B^TA^T$</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
