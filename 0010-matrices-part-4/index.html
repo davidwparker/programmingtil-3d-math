@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrices Part 4</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrices Part 4<br>
+          Multiplying with a vector<br>
+          How Matrices affect Vectors
+        </section>
+        <section>
+          Multiplication with a Vector<br>
+          row vectors vs column vectors matter!
+        </section>
+        <section>
+          Example:<br>
+          $
+          \left[ \begin{smallmatrix} x & y & z \end{smallmatrix} \right]
+          \left[ \begin{smallmatrix} m_{11} & m_{12} & m_{13} \\ m_{21} & m_{22} & m_{23} \\ m_{31} & m_{32} & m_{33} \end{smallmatrix} \right]
+          $ = <br><br>
+          $
+          \left[ \begin{smallmatrix}
+            xm_{11}+ym_{21}+zm_{31} & xm_{12}+ym_{22}+zm_{32} & xm_{13}+ym_{23}+zm_{33}
+          \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Example:<br>
+          $
+          \left[ \begin{smallmatrix} m_{11} & m_{12} & m_{13} \\ m_{21} & m_{22} & m_{23} \\ m_{31} & m_{32} & m_{33} \end{smallmatrix} \right]
+          \left[ \begin{smallmatrix} x \\ y \\ z \end{smallmatrix} \right]
+          $ = <br><br>
+          $
+          \left[ \begin{smallmatrix}
+            m_{11}x+m_{12}y+m_{13}z \\
+            m_{21}x+m_{22}y+m_{23}z \\
+            m_{31}x+m_{32}y+m_{33}z
+          \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Example:<br>
+          $
+          \left[ \begin{smallmatrix} m_{11} & m_{12} & m_{13} \\ m_{21} & m_{22} & m_{23} \\ m_{31} & m_{32} & m_{33} \end{smallmatrix} \right]
+          \left[ \begin{smallmatrix} n_{11} & n_{12} & n_{13} \end{smallmatrix} \right]
+          $ = <br><br>
+          (undefined)
+        </section>
+        <section>
+          Example:<br>
+          $
+          \left[ \begin{smallmatrix} m_{11} \\ m_{21} \\ m_{31} \end{smallmatrix} \right]
+          \left[ \begin{smallmatrix} n_{11} & n_{12} & n_{13} \\ n_{21} & n_{22} & n_{23} \\ n_{31} & n_{32} & n_{33} \end{smallmatrix} \right]
+          $ = <br><br>
+          (undefined)
+        </section>
+        <section>
+          Row versus column Vectors
+        </section>
+        <section>
+          Row versus column Vectors<br>
+          Note that in the previous slides, the $row \times M \neq M \times column$.<br>
+          So it is important to know which you'll be working with.
+        </section>
+        <section>
+          DirectX uses row vectors<br>
+          I will mostly be using row vectors<br>
+          OpenGL uses column vectors<br>
+          Linear algebra books typically use column vectors<br>
+        </section>
+        <section>
+          How does a Matrix Transform Vectors
+        </section>
+        <section>
+          Recall:<br>
+          $
+          \left[ \begin{smallmatrix} x \\ y \\ z \end{smallmatrix} \right]
+          =
+          \left[ \begin{smallmatrix} x \\ 0 \\ 0 \end{smallmatrix} \right]
+          +
+          \left[ \begin{smallmatrix} 0 \\ y \\ 0 \end{smallmatrix} \right]
+          +
+          \left[ \begin{smallmatrix} 0 \\ 0 \\ z \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Rewritten:<br>
+          $
+          \left[ \begin{smallmatrix} x \\ y \\ z \end{smallmatrix} \right]
+          =
+          x
+          \left[ \begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix} \right]
+          +
+          y
+          \left[ \begin{smallmatrix} 0 \\ 1 \\ 0 \end{smallmatrix} \right]
+          +
+          z
+          \left[ \begin{smallmatrix} 0 \\ 0 \\ 1 \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Rewrite unit vectors p, q, r:<br>
+          $v = xp + yq + zr$<br>
+          p, q, and r are known as base vectors.
+        </section>
+        <section>
+          Using p, q, r to make matrix M:<br>
+          $
+          M =
+          \left[ \begin{smallmatrix} p \\ q \\ r \end{smallmatrix} \right]
+          =
+          \left[ \begin{smallmatrix} p_x & p_y & p_z \\ q_x & q_y & q_z \\ r_x & r_y & r_z \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Multiplying a vector by this, we get<br>
+          $
+          \left[ \begin{smallmatrix} x & y & z \end{smallmatrix} \right]
+          \left[ \begin{smallmatrix} p_x & p_y & p_z \\ q_x & q_y & q_z \\ r_x & r_y & r_z \end{smallmatrix} \right]
+          $<br>
+          $
+          =
+          \left[ \begin{smallmatrix} xp_x + yq_x + zr_x & xp_y + yq_y + zr_y & xp_z + yq_z + zr_z \end{smallmatrix} \right]
+          $<br>
+          $
+          =
+          \left[ \begin{smallmatrix} xp & yq & zr \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          What does this mean?<br>
+          If we interpret the rows of a matrix as the basis vectors of a coordinate system,<br>
+          then multiplication by the matirx performs a coordinate system transformation.<br>
+          if $aM=b$ then we say that $M$ transformed $a$ to $b$.
+        </section>
+        <section>
+          Multiplication = Transformation<br>
+          Matrices are basically a compact way to represent math operations needed to perform<br>
+          a coordinate space transformation.
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>

@@ -15,10 +15,10 @@ View at: http://localhost:8080/
 
 ## CONCEPTS:
 
-* Matrices Part 3: Multiplying two matrices
+* Matrices Part 4: Multiplying a matrix with a vector, How Matrices affect Vectors
 
 ## RESOURCES:
 
-* https://github.com/davidwparker/programmingtil-3d-math/tree/master/0009-matrices-part-3
+* https://github.com/davidwparker/programmingtil-3d-math/tree/master/0010-matrices-part-4
 * Slides JS: https://github.com/hakimel/reveal.js/
 * Math JS: https://www.mathjax.org/
