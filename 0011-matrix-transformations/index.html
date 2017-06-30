@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrix Transformations</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrix Linear Transformations<br>
+          Object and coordinates space, rotation
+        </section>
+        <section>
+          We can transform an object<br>
+          We can transform the coordinates<br>
+          Recall that linear transformations do not include translation.
+        </section>
+        <section>
+          Transforming an object by an given amount is equal to
+          transforming the coordinate system by the opposite amount.<br>
+          Multiple transformations are applied in the opposite order.
+        </section>
+        <section>
+          Example:<br>
+          If we scale an object by 200% and then rotate it 20 degrees clockwise,
+          this is equal to rotating the coordinate system 20 degrees counterclockwise
+          and then scaling by 50%.
+        </section>
+        <section>
+          Rotation in 2D<br>
+          When rotating in 2D we rotate around a point.<br>
+          For now, consider rotating about the origin.<br>
+          Only one param $\theta$, which is the amount of rotation.<br>
+          Counterclockwise is normally positive while clockwise is negative.
+        </section>
+        <section>
+          Consider basis vectors $p = [1,0]$ and $q = [0, 1]$ rotating counterclockwise.
+          The new values $p' = [cos \theta, sin \theta]$ and $q = [-sin \theta, cos \theta]$
+          So we have the matrix
+          $R(\theta)
+          = \left[ \begin{smallmatrix} p' \\ q' \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} cos \theta && sin \theta \\ -sin \theta && cos \theta \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Rotation in 3D<br>
+          Rotation in 3D is about an axis. <br>
+          When we rotate by an amount $\theta$, we need to know which way is positive.<br>
+          The standard way is the left-hand rule.
+        </section>
+        <section>
+          Rotation in 3D: left hand rule<br>
+          The left hand rule works as such- put your hand in a thumbs up position.<br>
+          Your thumb points towards the positive end of the axis of rotation.<br>
+          Positive rotation about said axis is in the direction that your fingers curl.
+        </section>
+        <section>
+          Rotation in 3D axes<br>
+          $p = [1,0,0]$<br>
+          $q = [0,1,0]$<br>
+          $r = [0,0,1]$
+        </section>
+        <section>
+          Rotation in 3D about the x-axis<br>
+          $R_x(\theta)
+          = \left[ \begin{smallmatrix} p' \\ q' \\ r' \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} 1 && 0 && 0 \\ 0 && cos \theta && sin \theta \\ 0 && -sin \theta && cos \theta \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Rotation in 3D about the y-axis<br>
+          $R_y(\theta)
+          = \left[ \begin{smallmatrix} p' \\ q' \\ r' \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} cos \theta && 0 && -sin \theta \\ 0 && 1 && 0 \\ sin \theta && 0 && cos \theta \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Rotation in 3D about the z-axis<br>
+          $R_z(\theta)
+          = \left[ \begin{smallmatrix} cos \theta && sin \theta && 0 \\ -sin \theta && cos \theta && 0 \\ 0 && 0 && 1 \end{smallmatrix} \right]
+          = \left[ \begin{smallmatrix} p' \\ q' \\ r' \end{smallmatrix} \right]
+          $
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
