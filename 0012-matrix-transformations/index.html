@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrix Transformations</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrix Linear Transformations<br>
+          Rotation about an arbitrary axis
+        </section>
+        <section>
+          Recall: Not translating, so axis must go through the origin<br>
+          Unit vector $n$ will be the axis.
+        </section>
+        <section>
+          We want a matrix that rotates about $n$ by $\theta = R(n, \theta)$.<br>
+          $vR(n, \theta) = v^\prime$
+        </section>
+        <section>
+          To simplify, we'll solve the problem in the plane perpendicular to $n$.
+        </section>
+        <section>
+          Split $v$ into $v_\perp + v_\Vert$<br>
+          $v_\Vert$ is parallel to $n$, so it won't be affected by the rotation.
+        </section>
+        <section>
+          So we know $v^\prime = v_\perp + v^\prime_\Vert$<br>
+        </section>
+        <section>
+          <img src="images/rotation.png" class="proj"/>
+          <br>
+          $v_\Vert$ is the portion of $v$ that is parallel to $n$.
+        </section>
+        <section>
+          <img src="images/rotation.png" class="proj"/>
+          <br>
+          $v_\Vert$ is the value of $v$ that is projected onto $n = (v \cdot n)n$
+        </section>
+        <section>
+          <img src="images/rotation.png" class="proj"/>
+          <br>
+          $v_\perp$ is the portion of $v$ that is perpendicular to $n$.
+        </section>
+        <section>
+          <img src="images/rotation.png" class="proj"/>
+          <br>
+          $v_\perp = v - v_\Vert$, which is the result of projecting $v$ onto plane perpendicular to $n$.
+        </section>
+        <section>
+          <img src="images/rotation.png" class="proj"/>
+          <br>
+          $w$ is a vector perpendicular to both $v_\perp$ and $v_\Vert$, with same
+          length as $v_\perp$
+        </section>
+        <section>
+          <img src="images/rotation.png" class="proj"/>
+          <br>
+          $w$ is the result of rotating $v_\perp$ about $n$ by $90^{\circ}$<br>
+          $w = n \times v_\perp$
+        </section>
+        <section>
+          <img src="images/rotation.png" class="proj"/>
+          <br>
+          $v^\prime_\perp = cos\theta v_\perp + sin\theta w$
+        </section>
+        <section>
+          Substituting for $v_\perp$ and $w$:<br>
+          $v_\Vert = (v \cdot n)n$<br>
+          $v_\perp = v - v_\Vert$<br>
+          $ = v - (v \cdot n)n$
+        </section>
+        <section>
+          Substituting for $v_\perp$ and $w$:<br>
+          $w = n \times v_\perp$<br>
+          $= n \times (v - v_\Vert)$<br>
+          $= n \times v - n \times v_\Vert$<br>
+          $= n \times v - 0$<br>
+          $= n \times v$
+        </section>
+        <section>
+          Substituting for $v_\perp$ and $w$:<br>
+          $v^\prime_\perp = cos\theta v_\perp + sin\theta w$<br>
+          $= cos\theta(v - (v \cdot n) n) + sin\theta (n \times v)$<br>
+        </section>
+        <section>
+          Substituting for $v_\prime$:<br>
+          $v^\prime = v^\prime_\perp + v_\Vert$<br>
+          $= cos\theta(v - (v \cdot n) n) + sin\theta (n \times v) + (v \cdot n)n$<br>
+        </section>
+        <section>
+          With $v^\prime$ in terms of $v, n,$ and $0$ we can compute the basis vectors.<br>
+          $p = \left[ \begin{smallmatrix} 1 && 0 && 0 \end{smallmatrix} \right]$
+        </section>
+        <section>
+          $
+          p^\prime = cos\theta(p - (p \cdot n) n) + sin\theta (n \times p) + (p \cdot n)n
+          $
+          <br>
+        </section>
+        <section>
+          (Using column vectors for formatting)
+          <div style="font-size:0.7em;">
+            $p^\prime
+            = cos\theta(\left[ \begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix} \right]
+             - (\left[ \begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix} \right]
+             \cdot \left[ \begin{smallmatrix} n_x \\ n_y \\ n_z \end{smallmatrix} \right])
+              \left[ \begin{smallmatrix} n_x \\ n_y \\ n_z \end{smallmatrix} \right]
+              )
+             + sin\theta (
+             \left[ \begin{smallmatrix} n_x \\ n_y \\ n_z \end{smallmatrix} \right]
+             \times \left[ \begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix} \right])
+             + (\left[ \begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix} \right]
+             \cdot
+             \left[ \begin{smallmatrix} n_x \\ n_y \\ n_z \end{smallmatrix} \right])
+             \left[ \begin{smallmatrix} n_x \\ n_y \\ n_z \end{smallmatrix} \right]$<br>
+           </div>
+           <div style="font-size:0.7em;">
+             $p^\prime
+             = cos\theta(
+             \left[ \begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix} \right]
+              - n_x
+              \cdot \left[ \begin{smallmatrix} n_x \\ n_y \\ n_z \end{smallmatrix} \right]
+               )
+              + sin\theta
+              \left[ \begin{smallmatrix} 0 \\ n_z \\ -n_y \end{smallmatrix} \right]
+              +
+              n_x
+              \left[ \begin{smallmatrix} n_x \\ n_y \\ n_z \end{smallmatrix} \right]
+              $<br>
+            </div>
+        </section>
+        <section>
+          <div style="font-size:0.7em;">
+            $p^\prime
+            = cos\theta
+            \left[ \begin{smallmatrix} 1 - n_x^2 \\ -n_xn_y \\ -n_xn_z \end{smallmatrix} \right]
+             + sin\theta
+             \left[ \begin{smallmatrix} 0 \\ n_z \\ -n_y \end{smallmatrix} \right]
+             +
+             \left[ \begin{smallmatrix} n_x^2 \\ n_xn_y \\ n_xn_z \end{smallmatrix} \right]
+             $<br>
+            $p^\prime
+            =
+            \left[ \begin{smallmatrix} cos\theta - n_x^2cos\theta \\ -n_xn_ycos\theta \\ -n_xn_zcos\theta \end{smallmatrix} \right]
+             +
+             \left[ \begin{smallmatrix} 0 \\ n_zsin\theta \\ -n_ysin\theta \end{smallmatrix} \right]
+             +
+             \left[ \begin{smallmatrix} n_x^2 \\ n_xn_y \\ n_xn_z \end{smallmatrix} \right]
+             $<br>
+           </div>
+        </section>
+        <section>
+          $p^\prime
+          =
+          \left[ \begin{smallmatrix}
+          cos\theta - cos\theta n_x^2 + n_x^2
+          \\ -n_xn_ycos\theta + n_zsin\theta + n_xn_y
+          \\ -n_xn_zcos\theta - n_ysin\theta + n_xn_z
+          \end{smallmatrix} \right]
+          $<br>
+          $p^\prime
+          =
+          \left[ \begin{smallmatrix}
+          n_x^2(1-cos\theta)+ cos\theta
+          \\
+          n_xn_y(1-cos\theta)+ n_zsin\theta
+          \\
+          n_xn_z(1-cos\theta)- n_ysin\theta
+          \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          $q = \left[ \begin{smallmatrix} 0 && 1 && 0  \end{smallmatrix} \right] $
+          <br>
+          $q^\prime
+          =
+          \left[ \begin{smallmatrix}
+          n_xn_y(1-cos\theta) - n_z sin\theta
+          \\
+          n_y^2(1-cos\theta) + cos\theta
+          \\
+          n_yn_z(1-cos\theta) + n_x sin\theta
+          \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          $r = \left[ \begin{smallmatrix} 0 && 0 && 1  \end{smallmatrix} \right] $
+          <br>
+          $r^\prime
+          =
+          \left[ \begin{smallmatrix}
+          n_xn_z(1-cos\theta)+ n_y sin\theta
+          \\
+          n_yn_z(1-cos\theta)- n_x sin\theta
+          \\
+          n_z^2(1-cos\theta) + cos\theta
+          \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          <div style="font-size:0.7em;">
+            $
+            R(n,\theta) = \left[ \begin{smallmatrix} p^\prime \\ q^\prime \\ r^\prime \end{smallmatrix} \right]
+            $
+            <br>
+            $=
+            \left[ \begin{smallmatrix}
+            n_x^2(1-cos\theta)+ cos\theta
+            && n_xn_y(1-cos\theta)+ n_zsin\theta
+            && n_xn_z(1-cos\theta)- n_ysin\theta
+            \\
+            n_xn_y(1-cos\theta) - n_z sin\theta
+            && n_y^2(1-cos\theta) + cos\theta
+            && n_yn_z(1-cos\theta) + n_x sin\theta
+            \\
+            n_xn_z(1-cos\theta)+ n_y sin\theta
+            && n_yn_z(1-cos\theta)- n_x sin\theta
+            && n_z^2(1-cos\theta) + cos\theta
+            \end{smallmatrix} \right]
+            $
+           </div>
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
