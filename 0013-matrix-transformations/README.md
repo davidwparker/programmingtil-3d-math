@@ -15,10 +15,10 @@ View at: http://localhost:8080/
 
 ## CONCEPTS:
 
-* Matrix Transformations 2: rotating around an arbitrary axis
+* Matrix Transformations 3: Scaling
 
 ## RESOURCES:
 
-* https://github.com/davidwparker/programmingtil-3d-math/tree/master/0012-matrix-transformations
+* https://github.com/davidwparker/programmingtil-3d-math/tree/master/0013-matrix-transformations
 * Slides JS: https://github.com/hakimel/reveal.js/
 * Math JS: https://www.mathjax.org/

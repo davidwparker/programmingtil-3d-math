@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrix Transformations 3: Scaling</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrix Linear Transformations<br>
+          Scaling
+        </section>
+        <section>
+          We can make an object bigger or smaller by scaling by a factor $k$.<br>
+          If all directions use the same scale, it is called a uniform scale.
+        </section>
+        <section>
+          If $|k| < 1$, the object gets smaller or shorter in that direction.<br>
+          If $|k| > 1$, the object gets bigger or longer in that direction.<br>
+          Next episode:<br>
+          If $k = 0$ then we have an orthographic projection.<br>
+          If $k < 0$, then we have a reflection.
+        </section>
+        <section>
+          Scaling along Cardinal Axes<br>
+          Two scalars: $k_x, k_y$. Basis vectors $p$ and $q$ are each affected
+          by their respective scalar<br>
+          $p^\prime = k_xp = k_x[1\enspace0] = [k_x\enspace0]$<br>
+          $q^\prime = k_yp = k_y[0\enspace1] = [0\enspace k_y]$<br>
+          $S(k_x,k_y) = \left[ \begin{smallmatrix} k_x && 0 \\ 0 && k_y \end{smallmatrix} \right]$
+        </section>
+        <section>
+          Scaling along Cardinal Axes<br>
+          In 3D, add $k_z$<br>
+          $S(k_x,k_y,k_z) = \left[ \begin{smallmatrix} k_x && 0 && 0
+          \\ 0 && k_y && 0
+          \\ 0 && 0 && k_z \end{smallmatrix} \right]$
+        </section>
+        <section>
+          Scale in an arbitrary direction<br>
+          $n$ = unit vector parallel to scalar factor $k$<br>
+          Compute $v^\prime$ in terms of $v, n, k$.
+        </section>
+        <section>
+          Scale in an arbitrary direction<br>
+          $v = v_\Vert + v_\perp$<br>
+          $v_\Vert = (v\cdot n)n$<br>
+          $v_\perp$ is perpendicular to $n$ = it will not be affected by $k$<br>
+          $v^\prime = v^\prime_\Vert+v_\perp$<br>
+          Need $v^\prime_\Vert$, which is just $kv_\Vert$
+        </section>
+        <section>
+          Scale in an arbitrary direction<br>
+          $v^\prime = v^\prime_\perp + v^\prime_\Vert$<br>
+          $v^\prime = v - (v\cdot n)n + k(v\cdot n)n$<br>
+          $v^\prime = v + (k-1)(v\cdot n)n$
+        </section>
+        <section>
+          Scale in an arbitrary direction- basis vector 2D<br>
+          $p = [1\enspace0]$<br>
+          $p^\prime = p + (k-1)(p\cdot n)n$<br>
+          $p^\prime = \left[ \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right]
+          + (k-1)(
+          \left[ \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right]
+          \cdot
+          \left[ \begin{smallmatrix} n_x \\ n_y \end{smallmatrix} \right]
+          )
+          \left[ \begin{smallmatrix} n_x \\ n_y \end{smallmatrix} \right]
+          $
+          $p^\prime =
+          \left[ \begin{smallmatrix}
+          1+(k-1)n_x^2
+          \\ (k-1)n_xn_y
+          \end{smallmatrix} \right]
+          $<br>
+        </section>
+        <section>
+          Scale in an arbitrary direction- basis vector 2D<br>
+          $q = [0\enspace1]$<br>
+          $q^\prime =
+          \left[ \begin{smallmatrix}
+          (k-1)n_xn_y
+          \\ 1+ (k-1)n_y^2
+          \end{smallmatrix} \right]
+          $<br>
+        </section>
+        <section>
+          Scale in an arbitrary direction- basis vector 2D<br>
+          $S(n,k) =
+          \left[ \begin{smallmatrix}
+          p^\prime \\ q^\prime
+          \end{smallmatrix} \right]$<br>
+          $ =
+          \left[ \begin{smallmatrix}
+          1+(k-1)n_x^2
+          && (k-1)n_xn_y
+          \\
+          (k-1)n_xn_y
+          && 1+ (k-1)n_y^2
+          \end{smallmatrix} \right]
+          $<br>
+        </section>
+        <section>
+          Scale in an arbitrary direction- basis vector 3D<br>
+          $p = [1\enspace0\enspace0]$<br>
+          $p^\prime =
+          \left[ \begin{smallmatrix}
+          1+(k-1)n_x^2
+          \\ (k-1)n_xn_y
+          \\ (k-1)n_xn_z
+          \end{smallmatrix} \right]
+          $<br>
+        </section>
+        <section>
+          Scale in an arbitrary direction- basis vector 3D<br>
+          $q = [0\enspace1\enspace0]$<br>
+          $q^\prime =
+          \left[ \begin{smallmatrix}
+          (k-1)n_xn_y
+          \\ 1+(k-1)n_y^2
+          \\ (k-1)n_yn_z
+          \end{smallmatrix} \right]
+          $<br>
+        </section>
+        <section>
+          Scale in an arbitrary direction- basis vector 3D<br>
+          $r = [0\enspace0\enspace1]$<br>
+          $r^\prime =
+          \left[ \begin{smallmatrix}
+          (k-1)n_xn_z
+          \\ (k-1)n_yn_z
+          \\ 1+(k-1)n_z^2
+          \end{smallmatrix} \right]
+          $<br>
+        </section>
+        <section>
+          Scale in an arbitrary direction- basis vector 3D<br>
+          $S(n,k) = $<br>
+          $
+          \left[ \begin{smallmatrix}
+          1+(k-1)n_x^2
+          && (k-1)n_xn_y
+          && (k-1)n_xn_z
+          \\
+          (k-1)n_xn_y
+          && 1+(k-1)n_y^2
+          && (k-1)n_yn_z
+          \\
+          (k-1)n_xn_z
+          && (k-1)n_yn_z
+          && 1+(k-1)n_z^2
+          \end{smallmatrix} \right]
+          $<br>
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
