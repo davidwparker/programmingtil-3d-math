@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrix Transformations 4: Reflection</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrix Linear Transformations<br>
+          Reflection
+        </section>
+        <section>
+          Reflection<br>
+          Also known as mirroring<br>
+          Flips an object about a line (2D) or plane (3D)<br>
+          Accomplished by scaling by -1
+        </section>
+        <section>
+          Reflection (2D)<br>
+          $p_n = S(n, -1)
+          =
+          \left[ \begin{smallmatrix}
+          1+(-1-1)n_x^2 && (-1-1)n_xn_y
+          \\ (-1-1)n_xn_y && 1+(-1-1)n_y^2
+          \end{smallmatrix} \right]
+          $<br>
+          $=
+          \left[ \begin{smallmatrix}
+          1-2n_x^2 && -2n_xn_y
+          \\ -2n_xn_y && 1-2n_y^2
+          \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Reflection (3D)<br>
+          $p_n = S(n, -1) =
+          \left[ \begin{smallmatrix}
+          1+(-1-1)n_x^2
+          && (-1-1)n_xn_y
+          && (-1-1)n_xn_z
+          \\
+          (-1-1)n_xn_y
+          && 1+(-1-1)n_y^2
+          && (-1-1)n_yn_z
+          \\
+          (-1-1)n_xn_z
+          && (-1-1)n_yn_z
+          && 1+(-1-1)n_z^2
+          \end{smallmatrix} \right]
+          $<br>
+          $ =
+          \left[ \begin{smallmatrix}
+          1-2n_x^2
+          && -2n_xn_y
+          && -2n_xn_z
+          \\
+          -2n_xn_y
+          && 1-2n_y^2
+          && -2n_yn_z
+          \\
+          -2n_xn_z
+          && -2n_yn_z
+          && 1-2n_z^2
+          \end{smallmatrix} \right]
+          $
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
