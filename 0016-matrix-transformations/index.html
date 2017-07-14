@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrix Transformations 6: Shearing</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrix Linear Transformations<br>
+          Shearing
+        </section>
+        <section>
+          Shearing<br>
+          Skews the coordinate space in a non-uniform manner<br>
+          Angles are not preserved<br>
+          Areas and volumes are preserved<br>
+          Add a multiple of one coordinate to another:<br>
+          $x^\prime = x + sy$
+        </section>
+        <section>
+          Shearing<br>
+          $
+          H_x(s) =
+          \left[ \begin{smallmatrix}
+          1
+          && 0
+          \\
+          s
+          && 1
+          \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Shearing<br>
+          $H_x$ means $x$ is sheared by $y$.<br>
+          $s$ is the amount and direction of shearing.<br>
+          $
+          H_y(s) =
+          \left[ \begin{smallmatrix}
+          1
+          && s
+          \\
+          0
+          && 1
+          \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Shearing<br>
+          $
+          H_{xy}(s,t) =
+          \left[ \begin{smallmatrix}
+          1
+          && 0
+          && 0
+          \\
+          0
+          && 1
+          && 0
+          \\
+          s
+          && t
+          && 1
+          \end{smallmatrix} \right]
+          $
+          <br>
+          $
+          H_{xz}(s,t) =
+          \left[ \begin{smallmatrix}
+          1
+          && 0
+          && 0
+          \\
+          s
+          && 1
+          && t
+          \\
+          0
+          && 0
+          && 1
+          \end{smallmatrix} \right]
+          $
+          <br>
+          $
+          H_{yz}(s,t) =
+          \left[ \begin{smallmatrix}
+          1
+          && s
+          && t
+          \\
+          0
+          && 1
+          && 0
+          \\
+          0
+          && 0
+          && 1
+          \end{smallmatrix} \right]
+          $
+          <br>
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
