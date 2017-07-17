@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrix Transformations 7: Combining Transformations</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrix Linear Transformations<br>
+          Combining Transformations
+        </section>
+        <section>
+          In gaming, or 3d rendering, suppose we want to show an object<br>
+          with its own position and orientation in the world,<br>
+          and we want to render it given a campera in its own position and orientation.<br>
+          We will transform the object vertices and transform from object to world space<br>
+          and World space to Camera Space.
+        </section>
+        <section>
+          $ P_{world} = P_{object}M_{object\rightarrow world}$<br>
+          $ P_{camera} = P_{world}M_{world\rightarrow camera}$<br>
+          $ P_{camera} = (P_{object}M_{object\rightarrow world})M_{world\rightarrow camera}$
+        </section>
+        <section>
+          Recall that multiplication is associative<br>
+          $ P_{camera} = (P_{object}M_{object\rightarrow world})M_{world\rightarrow camera}$<br>
+          $ P_{camera} = P_{object}(M_{object\rightarrow world}M_{world\rightarrow camera})$
+        </section>
+        <section>
+          Concatenate matrices:<br>
+          $ M_{object\rightarrow camera} = M_{object\rightarrow world}M_{world\rightarrow camera}$
+          $ P_{camera} = P_{object}M_{object\rightarrow camera}$
+        </section>
+        <section>
+          Geometrically, what's happening in matrix concatenation?<br>
+          Recall: The rows of a matrix contain the basis vectors after transfomation, even multiple transformations<br>
+        </section>
+        <section>
+          Geometrically, what's happening in matrix concatenation?<br>
+          let $a_1, a_2, a_3$ be the rows of $A$<br>
+          $
+          A =
+          \left[ \begin{smallmatrix}
+          a_1 \\ a_2 \\ a_3
+          \end{smallmatrix} \right]
+          $<br>
+          $
+          AB =
+          \left[ \begin{smallmatrix}
+          a_1 \\ a_2 \\ a_3
+          \end{smallmatrix} \right]
+          B
+          =
+          \left[ \begin{smallmatrix}
+          a_1B \\ a_2B \\ a_3B
+          \end{smallmatrix} \right]
+          $
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
