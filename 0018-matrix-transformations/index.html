@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrix Transformations 8: Types of Transformations</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrix Linear Transformations<br>
+          Types of Transformations
+        </section>
+        <section>
+          Linear Transformations<br>
+          Linear if preserves addition/multiplication by scalar:<br>
+          $F(a+b) = F(a)+F(b)$<br>
+          $F(ka) = kF(a)$<br>
+        </section>
+        <section>
+          Linear Transformations<br>
+          $F(a) = aM$, when $M$ is square is linear:<br>
+          $F(a+b) = (a+b)M = aM + bM = F(a) + F(b)$<br>
+          $F(ka) = (ka)M = k(aM) = kF(a)$
+        </section>
+        <section>
+          Linear Transformations<br>
+          Any linear transform will transform zero vector into zero vector:<br>
+          if $F(0) = a, a\neq 0$, then $F$ is not linear because
+          $F(k0) = a$, so $F(k0) \neq kF(0)$<br>
+          Thus translation is not a linear transformation.
+        </section>
+        <section>
+          Affine Transformations<br>
+          Linear transformation followed by translation.<br>
+          Any linear transformation is an affine translation, but not all affine
+          transformations are linear transformations.<br>
+          All transformations from episodes up to now are affine transformations<br>
+          Form $v^\prime = vM + b$ is an affine transformation.
+        </section>
+        <section>
+          Invertible Transformations<br>
+          If there is another opposite transformation that "undoes" the original
+          transformation, then it is invertible.<br>
+          $F^{-1}(F(a)) = a$ for all $a$<br>
+          All transformations thus far, other than projection (3d -> 2d) can be undone<br>
+          If a matrix is singular (has no inverse), then it is non-invertible.
+        </section>
+        <section>
+          Angle-preserving Transformations<br>
+          Considered angle-preserving if angle between 2 vectors not changed<br>
+          in magnitude or direction after transformation.<br>
+          Only Translation, rotation, and uniform scale transformations<br>
+          Reflection not considered becasuse direction of angle may be inverted.
+        </section>
+        <section>
+          Orthogonal Transformations<br>
+          More later.<br>
+          Axes remain perpendicular, no scalars applied.<br>
+          Translation, rotation, and reflection only orthogonal transforms.<br>
+          Lengths, angles, areas, and volumes preserved.<br>
+          Determinant is +/-1.<br>
+          Afffine and invertible.
+        </section>
+        <section>
+          Rigid Body Transformations<br>
+          Changes location and orientation, but not shape.<br>
+          Angles, lengths, areas, and volumes preserved.<br>
+          Not reflection.<br>
+          "Proper" transformations.
+          Orthogonal, angle-preserving, invertible, affine.<br>
+          Determinant of rotation matrix is 1.
+        </section>
+        <section>
+          Summary of Transformations<br>
+          <img src="images/transforms.png" />
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
