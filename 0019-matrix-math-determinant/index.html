@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrix Math: How to compute the determinant</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrix Math<br>
+          How to compute the determinant of a matrix part 2<br>
+          2x2 and 3x3
+        </section>
+        <section>
+          Every square matrix has a special scalar called the determinant of a matrix<br>
+          Non-square matrices do not have a defined determinant.
+        </section>
+        <section>
+          2x2:<br>
+          $
+          |M| = \left| \begin{smallmatrix}
+          m_{11} && m_{12}
+          \\
+          m_{21} && m_{22}
+          \end{smallmatrix} \right|
+          = m_{11}m_{22} - m_{12}m_{21}
+          $
+        </section>
+        <section>
+          Shortcut: take the diagonal numbers ($m_{11}, m_{22}$), multiply them
+          and then subtract the back diagonal numbers ($m_{12}, m_{21}$) multiplied
+        </section>
+        <section>
+          2x2 Example:<br>
+          $
+          \left| \begin{smallmatrix}
+          3 && 4
+          \\
+          -2 && 1
+          \end{smallmatrix} \right|
+          = (3)(1) - (4)(-2) = 3 + 8 = 11
+          $<br>
+          $
+          \left| \begin{smallmatrix}
+          a && b
+          \\
+          c && d
+          \end{smallmatrix} \right|
+          = ad - bc
+          $
+        </section>
+        <section>
+          3x3:<br>
+          $
+          |M| = \left| \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13}
+          \\
+          m_{21} && m_{22} && m_{23}
+          \\
+          m_{31} && m_{32} && m_{33}
+          \end{smallmatrix} \right|
+          $
+          <br>
+          $
+          = m_{11}m_{22}m_{33} + m_{12}m_{23}m_{31} + m_{13}m_{21}m_{32}
+          $<br>
+          $
+          - m_{13}m_{22}m_{31} - m_{12}m_{21}m_{33} - m_{11}m_{23}m_{32}
+          $<br>
+          $
+          = m_{11}(m_{22}m_{33}-m_{23}m_{32})
+          $
+          <br>
+          $ + m_{12}(m_{23}m_{31}-m_{21}m_{33})$
+          <br>
+          $
+          + m_{13}(m_{21}m_{32}-m_{22}m_{31})
+          $
+        </section>
+        <section>
+          Shortcut:<br>
+          $
+          \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13} && m_{11} && m_{12} && m_{13}
+          \\
+          m_{21} && m_{22} && m_{23} && m_{21} && m_{22} && m_{23}
+          \\
+          m_{31} && m_{32} && m_{33} && m_{31} && m_{32} && m_{33}
+          \end{smallmatrix}
+          $
+        </section>
+        <section>
+          3x3 Example:<br>
+          $
+          \left|
+          \begin{smallmatrix}
+          7 && 1 && -3
+          \\
+          -2 && 3 && 2
+          \\
+          1 && 5 && 2
+          \end{smallmatrix}
+          \right|
+          $<br>
+          $
+          = (7)(3)(2)+(1)(2)(1)+(-3)(-2)(5)
+          $<br>
+          $
+          - (-3)(3)(1)-(1)(-2)(2)-(7)(2)(5)
+          $<br>
+          $
+          = 42+4+30 +9 +4 - 70 = 19
+          $
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
