@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrix Math: How to compute the determinant 2</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrix Math<br>
+          How to compute the determinant of a matrix part 2<br>
+          nxn
+        </section>
+        <section>
+          Determinant of the matrix is equal to the "triple product" of the three vectors
+          (three rows of a 3x3 matrix as three vectors):<br>
+          $
+          \left|
+          \begin{smallmatrix}
+          a_x && a_y && a_z
+          \\
+          b_x && b_y && b_z
+          \\
+          c_x && c_y && c_z
+          \end{smallmatrix}
+          \right|
+          =
+          $<br>
+          <div style="font-size:0.7em;">
+            $
+            =
+            a_xb_yc_z+a_yb_zc_x+a_zb_xc_y
+            - a_zb_yc_x-a_yb_xc_z-a_xb_zc_y
+            $<br>
+            $
+            = (a_yb_z-a_zb_y)c_x + (a_zb_x-a_xb_z)c_y + (a_xb_y-a_yb_x)c_z
+            $<br>
+            $
+            = (a\times b) \cdot c
+            $
+          </div>
+        </section>
+        <section>
+          $Minor$ of $M$:<br>
+          The submatrix $M^{ij}$ that is derived by deleting row $i$ and column $j$ from
+          matrix $M$.
+        </section>
+        <section>
+          Minor Example:<br>
+          $
+          \left[ \begin{smallmatrix}
+          3 && 4 && 2
+          \\
+          -2 && 1 && 1
+          \\
+          1 && 3 && 2
+          \end{smallmatrix} \right]
+          $
+          <br>
+          Minor $M^{21} =
+          \left[ \begin{smallmatrix}
+          4 && 2
+          \\
+          3 && 2
+          \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Cofactor of a square matrix:<br>
+          The signed determinant of the corresponding minor of M<br>
+          $
+          c_{ij} =
+          (-1)^{i+j}|M^{ \{ ij \} }|
+          $
+        </section>
+        <section>
+          Note that a minor is a matrix quantity<br>
+          Note that a cofactor is a scalar quantity
+        </section>
+        <section>
+          The term $(-1)^{i+j}$ in the the computation of the cofactor negates every
+          cofactor in a checkboard pattern:<br>
+          $
+          \left[ \begin{smallmatrix}
+          + && - && +
+          \\
+          - && + && -
+          \\
+          + && - && +
+          \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          We will now compute determinant of a matrix of arbitrary dimension $n$
+          in terms of its cofactors.<br>
+          <ul>
+            <li>Select a row or column for a matrix</li>
+            <li>For each element in the row or column, multiply that element by its cofactor</li>
+            <li>Summing these products yields the determinant</li>
+            <li>Note it's recursive</li>
+          </ul>
+          $
+          |M| = \sum_{j=1}^n m_{ij}c_{ij} = \sum_{j=1}^n m_{ij}(-1)^{i+j}|M^{ \{ ij \} }|
+          $
+        </section>
+        <section>
+          4x4 example<br>
+          $
+          \left[ \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13} && m_{14}
+          \\
+          m_{21} && m_{22} && m_{23} && m_{24}
+          \\
+          m_{31} && m_{32} && m_{33} && m_{34}
+          \\
+          m_{41} && m_{42} && m_{43} && m_{44}
+          \end{smallmatrix} \right]
+          $
+          <br>
+          $
+          =
+          m_{11}
+          \left[ \begin{smallmatrix}
+          m_{22} && m_{23} && m_{24}
+          \\
+          m_{32} && m_{33} && m_{34}
+          \\
+          m_{42} && m_{43} && m_{44}
+          \end{smallmatrix} \right]
+          -
+          m_{12}
+          \left[ \begin{smallmatrix}
+          m_{21} && m_{23} && m_{24}
+          \\
+          m_{31} && m_{33} && m_{34}
+          \\
+          m_{41} && m_{43} && m_{44}
+          \end{smallmatrix} \right]
+          $
+          <br>
+          $
+          +
+          m_{13}
+          \left[ \begin{smallmatrix}
+          m_{21} && m_{22} && m_{24}
+          \\
+          m_{31} && m_{32} && m_{34}
+          \\
+          m_{41} && m_{42} && m_{44}
+          \end{smallmatrix} \right]
+          -
+          m_{14}
+          \left[ \begin{smallmatrix}
+          m_{21} && m_{22} && m_{23}
+          \\
+          m_{31} && m_{32} && m_{33}
+          \\
+          m_{41} && m_{42} && m_{43}
+          \end{smallmatrix} \right]
+          $
+        </section>
+        <section>
+          Characteristics of Determinants<br>
+          <ul>
+            <li>
+              Determinant of matrix product is equal to the product of the determinants:<br>
+              $|AB| = |A||B|$ ...even more than one:<br>
+              $|M_1M_2...M_{n-1}M_n| = |M_1||M_2|...|M_{n-1}||M_n|$
+            </li>
+            <li>
+              Determinant of the transpose of a matrix is equal to the original determinant<br>
+              $|M^T| = |M|$
+            </li>
+          </ul>
+        </section>
+        <section>
+          Characteristics of Determinants<br>
+          <ul>
+            <li>If any row or column in a matrix contains all zeros, then the determinant of the matrix
+            is zero</li>
+            <li>Exchanging any pair of rows (or pair of columns) negates the determinant</li>
+            <li>Adding any nonzero multiple of a row/column to another row/column does not change the value
+            of the determinant</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
