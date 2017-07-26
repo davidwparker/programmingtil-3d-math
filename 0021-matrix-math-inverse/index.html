@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrix Math: How to compute the inverse</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrix Math<br>
+          Inverse of a matrix<br>
+        </section>
+        <section>
+          The inverse of a matrix $M$, is the matrix $M^{-1}$, that when we multiply $M$ and
+          $M^{-1}$ on either side, the result is the identity matrix.<br>
+          $M(M^{-1}) = M^{-1}M = I$
+        </section>
+        <section>
+          Notes:<br>
+          Not all matrices have an inverse: if a matrix has a row or column with all zeros, then you'll
+          always end up with a matrix full of zeros when multiplied.<br>
+          If a matrix has an inverse, it is called invertible or non-singular.<br>
+          If a matrix has no inverse, it is called non-invertible or singular.<br>
+        </section>
+        <section>
+          Determinant of a singular matrix is zero.<br>
+          Determinant of a non-singular matrix is nonzero.<br>
+          Any invertible matrix $M$, the vector equality $vM = 0$ is only true if $v = 0$
+        </section>
+        <section>
+          Adjoint of M<br>
+          The transpose of the matrix of cofactors<br>
+        </section>
+        <section>
+          Adjoint of M Example.<br>
+          $
+          \left[
+          \begin{smallmatrix}
+          4 && 2 && 1
+          \\
+          2 && 3 && -1
+          \\
+          -2 && 3 && 1
+          \end{smallmatrix}
+          \right]
+          =
+          $ cofactors =<br>
+          <div style="font-size:0.7em;">
+            $
+            +\left|
+            \begin{smallmatrix}
+            3 && -1
+            \\
+            3 && 1
+            \end{smallmatrix}
+            \right| = 6
+            \enspace
+
+            -\left|
+            \begin{smallmatrix}
+            2 && -1
+            \\
+            -2 && 1
+            \end{smallmatrix}
+            \right| = 0
+            \enspace
+
+            +\left|
+            \begin{smallmatrix}
+            2 && 3
+            \\
+            -2 && 3
+            \end{smallmatrix}
+            \right| = 12
+            $
+            <br>
+
+            $
+            -\left|
+            \begin{smallmatrix}
+            2 && 1
+            \\
+            3 && 1
+            \end{smallmatrix}
+            \right| = 1
+            \enspace
+
+            +\left|
+            \begin{smallmatrix}
+            4 && 1
+            \\
+            -2 && 1
+            \end{smallmatrix}
+            \right| = 6
+            \enspace
+
+            -\left|
+            \begin{smallmatrix}
+            4 && 2
+            \\
+            -2 && 3
+            \end{smallmatrix}
+            \right| = -16
+            $
+            <br>
+
+            $
+            +\left|
+            \begin{smallmatrix}
+            2 && 1
+            \\
+            3 && -1
+            \end{smallmatrix}
+            \right| = -5
+            \enspace
+
+            -\left|
+            \begin{smallmatrix}
+            4 && 1
+            \\
+            2 && -1
+            \end{smallmatrix}
+            \right| = 6
+            \enspace
+
+            +\left|
+            \begin{smallmatrix}
+            4 && 2
+            \\
+            2 && 3
+            \end{smallmatrix}
+            \right| = 8
+            $
+          </div>
+        </section>
+        <section>
+          Adjoint of M Example.<br>
+          $
+          \left[
+          \begin{smallmatrix}
+          6 && 0 && 12
+          \\
+          1 && 6 && -16
+          \\
+          -5 && 6 && 8
+          \end{smallmatrix}
+          \right]^T
+          =
+          $
+          <br>
+          $
+          \left[
+          \begin{smallmatrix}
+          6 && 1 && -5
+          \\
+          0 && 6 && 6
+          \\
+          12 && -16 && 8
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          Now that we have the classical adjoint, compute the inverse by dividing by the
+          determinant.<br>
+          $$M^{-1} = \frac{adj M}{|M|}$$
+        </section>
+        <section>
+          $
+          \frac{
+          \left[
+          \begin{smallmatrix}
+          6 && 1 && -5
+          \\
+          0 && 6 && 6
+          \\
+          12 && -16 && 8
+          \end{smallmatrix}
+          \right]
+          }
+          { 1296 }
+          $
+          <br><br>
+          $
+          =
+          \left[
+          \begin{smallmatrix}
+          1/216 && 1/1296 && -5/1296
+          \\
+          0 && 1/216 && 1/216
+          \\
+          1/108 && -1/81 && 1/162
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          Properties of a matrix inverse:<br>
+          <ul>
+            <li>$(M^{-1})^{-1} = M$</li>
+            <li>$I^{-1} = I$</li>
+            <li>$(M^T)^{-1} = (M^{-1})^T$</li>
+            <li>$(AB)^{-1} = B^{-1}A^{-1}$</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
