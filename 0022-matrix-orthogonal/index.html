@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Orthogonal Matrix</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Orthogonal Matrices
+        </section>
+        <section>
+          $M$ is orthogonal iff $MM^T = I$<br>
+          Recall $MM^{-1} = I$, thus $M^T = M^{-1}$ for orthogonal matrices.
+        </section>
+        <section>
+          Many times, we know that we're an orthogonal matrix ahead of time, such
+          as when we're using rotation or reflection matrices. This will save us
+          computation when computing their inverse matrices.
+        </section>
+        <section>
+          If we don't know, we can compute it<br>
+          $
+          MM^T = I
+          $
+          <br>
+          $
+          \left[
+          \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13}
+          \\
+          m_{21} && m_{22} && m_{23}
+          \\
+          m_{31} && m_{32} && m_{33}
+          \end{smallmatrix}
+          \right]
+          \left[
+          \begin{smallmatrix}
+          m_{11} && m_{21} && m_{31}
+          \\
+          m_{12} && m_{22} && m_{32}
+          \\
+          m_{13} && m_{23} && m_{33}
+          \end{smallmatrix}
+          \right]
+          =
+          \left[
+          \begin{smallmatrix}
+          1 && 0 && 0
+          \\
+          0 && 1 && 0
+          \\
+          0 && 0 && 1
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          $r_1 = [ m_{11} m_{12} m_{13} ]$<br>
+          $r_2 = [ m_{21} m_{22} m_{23} ]$<br>
+          $r_3 = [ m_{31} m_{32} m_{33} ]$<br>
+          $M = \left[
+          \begin{smallmatrix}
+          r_1
+          \\
+          r_2
+          \\
+          r_3
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          $
+          r_1\cdot r_1 = 1 \enspace
+          r_2\cdot r_1 = 0 \enspace
+          r_3\cdot r_1 = 0
+          $<br>
+          $
+          r_1\cdot r_2 = 0 \enspace
+          r_2\cdot r_2 = 1 \enspace
+          r_3\cdot r_2 = 0
+          $<br>
+          $
+          r_1\cdot r_3 = 0 \enspace
+          r_2\cdot r_3 = 0 \enspace
+          r_3\cdot r_3 = 1
+          $
+        </section>
+        <section>
+          First, dot product of a vector with itself is one iff the vector is a unit vector.<br>
+          Thus, first, fourth, and ninth equations are true only if $r_1, r_2, r_3$ are
+          unit vectors.<br>
+          Second, dot product of two vectors is zero iff they are perpendicular<br>
+          Thus, $r_1, r_2, r_3$ must be mutually perpendicular.
+        </section>
+        <section>
+          To be orthogonal, the following must be true:
+          <ul>
+            <li>Each row of the matrix must be a unit vector</li>
+            <li>The rows of the matrix must be mutually perpendicular</li>
+          </ul>
+          (Similar statements can be made about the columns as well.)
+        </section>
+        <section>
+          Orthogonalizing a matrix<br>
+          Gram-Schmidt Orthogonalization: constructing set of orthogonal basis vectors<br>
+          For each row vector, subtract the portion that is parallel to proceeding rows<br>
+          $r_1, r_2, r_3$ are the rows of a vector.<br>
+          $r^\prime_1, r^\prime_2, r^\prime_3$ are the orthogonal set of row vectors.
+        </section>
+        <section>
+          $r^\prime_1 = r_1$<br>
+          $r^\prime_2 = r_2 - \frac{r_2 \cdot r^\prime_1 }{r^\prime_1 \cdot r^\prime_1}r^\prime_1$<br>
+          $r^\prime_3 = r_3 - \frac{r_3 \cdot r^\prime_1 }{r^\prime_1 \cdot r^\prime_1}r^\prime_1
+           - \frac{r_3 \cdot r^\prime_2 }{r^\prime_2 \cdot r^\prime_2}r^\prime_2
+          $<br>
+        </section>
+        <section>
+          <ul>
+            <li>These may not be unit vectors, so we must normalize the vectors</li>
+            <li>Normalize as we go, rather than in second pass to avoid division</li>
+            <li>Biased depending on order</li>
+          </ul>
+        </section>
+        <section>
+          To remove bias, we can use a small fraction $k$ and subtract off $k$ instead of all the projection.
+          $
+          r^\prime_1 = r_1 - k\frac{r_1 \cdot r_2 }{r_2 \cdot r_2}r_2
+          - k\frac{r_1 \cdot r_3 }{r_3 \cdot r_3}r_3
+          $
+          $
+          r^\prime_2 = r_2 - k\frac{r_2 \cdot r_1 }{r_1 \cdot r_1}r_1
+          - k\frac{r_2 \cdot r_3 }{r_3 \cdot r_3}r_3
+          $
+          $
+          r^\prime_3 = r_3 - k\frac{r_3 \cdot r_1 }{r_1 \cdot r_1}r_1
+          - k\frac{r_3 \cdot r_2 }{r_2 \cdot r_2}r_2
+          $
+        </section>
+        <section>
+          Each pass gets closer (but not exact) to orthogonal. If $k$ is low ($=1/4$), and iterations
+          is high ($=10$), then we can fairly close. Then using that result, we can use the standard
+          Gram-Schmidt algorithm to get perfect orthogonal basis.
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
