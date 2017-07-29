@@ -19,6 +19,6 @@ View at: http://localhost:8080/
 
 ## RESOURCES:
 
-* https://github.com/davidwparker/programmingtil-3d-math/tree/master/0020-matrix-math-determinant
+* https://github.com/davidwparker/programmingtil-3d-math/tree/master/0022-matrix-math-orthogonal
 * Slides JS: https://github.com/hakimel/reveal.js/
 * Math JS: https://www.mathjax.org/
