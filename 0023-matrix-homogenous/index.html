@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homogenous Matrices</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Homogenous Matrices (4D) and Translations
+        </section>
+        <section>
+          4D has the standard $x, y, z$ components, and another $w$, which is
+          called the homogenous coordinate. <br>
+          Note: $w$ doesn't represent time.
+        </section>
+        <section>
+          2D Homogenous example<br>
+          2D plane, existing in 3D, at the plane $w = 1$<br>
+          The point $(x,y)$ is represented in homogenous space $(x,y,1)$<br>
+          Every point not in plane $w = 1$, we compute the 2D point by projecting the point
+          onto the plane $w=1$ and divide by $w$<br>
+          Homogenous coordinate $(x,y,w)$ is mapped to 2D point $(x/w,y/w)$
+        </section>
+        <section>
+          2D Homogenous example<br>
+          For any given 2D point $(x,y)$, there are infinite corresponding points in
+          homogenous space, in the form $(kx,ky,k)$ given $k \neq 0$.<br>
+          When $w=0$ division is undefined and there is not 2D point.
+        </section>
+        <section>
+          Into 3D<br>
+          Same rules apply: 4D homogenous point $(x,y,z,w)$ maps to 3D point $(x/w,y/w,z/w)$.<br>
+          When $w=0$, the 4D point represents a point at infinity.<br>
+        </section>
+        <section>
+          Why use Homogenous 4D space?<br>
+          Recall with 3x3 linear transformations that they didn't have a translation.<br>
+          This was due to multiplication against a zero vector so they couldn't translate.<br>
+          4x4 matrices allow us to do this.
+        </section>
+        <section>
+          Assume $w=1$
+          $
+          \left[
+          \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13}
+          \\
+          m_{21} && m_{22} && m_{23}
+          \\
+          m_{31} && m_{32} && m_{33}
+          \end{smallmatrix}
+          \right]
+          =
+          \left[
+          \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13} && 0
+          \\
+          m_{21} && m_{22} && m_{23} && 0
+          \\
+          m_{31} && m_{32} && m_{33} && 0
+          \\
+          0 && 0 && 0 && 1
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          Standard 3x3 multiplying by a vector<br>
+          $
+          \left[
+          \begin{smallmatrix}
+          x && y && z
+          \end{smallmatrix}
+          \right]
+          \left[
+          \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13}
+          \\
+          m_{21} && m_{22} && m_{23}
+          \\
+          m_{31} && m_{32} && m_{33}
+          \end{smallmatrix}
+          \right]
+          $<br>
+          $
+          =
+          \left[
+          \begin{smallmatrix}
+          xm_{11}+ym_{21}+zm_{31} && xm_{12}+ym_{22}+zm_{32} && xm_{13}+ym_{23}+zm_{33}
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          4x4 multiplying by a vector: same result but with $w=1$<br>
+          $
+          \left[
+          \begin{smallmatrix}
+          x && y && z && 1
+          \end{smallmatrix}
+          \right]
+          \left[
+          \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13} && 0
+          \\
+          m_{21} && m_{22} && m_{23} && 0
+          \\
+          m_{31} && m_{32} && m_{33} && 0
+          \\
+          0 && 0 && 0 && 1
+          \end{smallmatrix}
+          \right]
+          $<br>
+          $
+          =
+          \left[
+          \begin{smallmatrix}
+          xm_{11}+ym_{21}+zm_{31} && xm_{12}+ym_{22}+zm_{32} && xm_{13}+ym_{23}+zm_{33} && 1
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          Using 4D matrix multiplication to express translation<br>
+          $
+          \left[
+          \begin{smallmatrix}
+          x && y && z && 1
+          \end{smallmatrix}
+          \right]
+          \left[
+          \begin{smallmatrix}
+          1 && 0 && 0 && 0
+          \\
+          0 && 1 && 0 && 0
+          \\
+          0 && 0 && 1 && 0
+          \\
+          \Delta x && \Delta y && \Delta z && 1
+          \end{smallmatrix}
+          \right]
+          $<br>
+          $
+          =
+          \left[
+          \begin{smallmatrix}
+          x + \Delta x && y + \Delta y && z + \Delta z && 1
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          Note: matrix multiplication is still a linear transformation while in 4D.<br>
+          It cannot represent translation in 4D, and 4D zero vector still transforms
+          back into 4D zero vector.<br>
+          This "trick" works because in order to translate points in 3D, we are $shearing$
+          4D space. Look at previous episodes shearing to compare formulas!
+        </section>
+        <section>
+          Transformation example<br>
+          $
+          R =
+          \left[
+          \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13} && 0
+          \\
+          m_{21} && m_{22} && m_{23} && 0
+          \\
+          m_{31} && m_{32} && m_{33} && 0
+          \\
+          0 && 0 && 0 && 1
+          \end{smallmatrix}
+          \right]
+          $
+          <br>
+          $
+          T =
+          \left[
+          \begin{smallmatrix}
+          1 && 0 && 0 && 0
+          \\
+          0 && 1 && 0 && 0
+          \\
+          0 && 0 && 1 && 0
+          \\
+          \Delta x && \Delta y && \Delta z && 1
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          Transformation example<br>
+          $v^\prime = vRT$<br>
+          Recall order is important, with row vectors, matrices order is left to right.<br>
+          Thus, we'd be rotating first then translating.<br>
+          Similar to 3x3 matrices, we can concatenate into a single matrix.<br>
+          $M = RT$ ... $v^\prime = vRT = v(RT) = vM$
+        </section>
+        <section>
+          Transformation example<br>
+          $
+          M =
+          RT =
+          \left[
+          \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13} && 0
+          \\
+          m_{21} && m_{22} && m_{23} && 0
+          \\
+          m_{31} && m_{32} && m_{33} && 0
+          \\
+          0 && 0 && 0 && 1
+          \end{smallmatrix}
+          \right]
+          \left[
+          \begin{smallmatrix}
+          1 && 0 && 0 && 0
+          \\
+          0 && 1 && 0 && 0
+          \\
+          0 && 0 && 1 && 0
+          \\
+          \Delta x && \Delta y && \Delta z && 1
+          \end{smallmatrix}
+          \right]
+          $<br>
+          $
+          =
+          \left[
+          \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13} && 0
+          \\
+          m_{21} && m_{22} && m_{23} && 0
+          \\
+          m_{31} && m_{32} && m_{33} && 0
+          \\
+          \Delta x && \Delta y && \Delta z && 1
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          So the top 3x3 contains the rotation, and the bottom row contains the translation.<br>
+          The right column will be $[0,0,0,1]^T$ (for now).<br>
+          So we can convert any 4x4 matrix into a separate linear transformation and translation.<br>
+          $
+          M =
+          \left[
+          \begin{smallmatrix}
+          R && 0
+          \\
+          t && 1
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          What happens when $w = 0$?<br>
+          $
+          \left[
+          \begin{smallmatrix}
+          x && y && z && 0
+          \end{smallmatrix}
+          \right]
+          \left[
+          \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13} && 0
+          \\
+          m_{21} && m_{22} && m_{23} && 0
+          \\
+          m_{31} && m_{32} && m_{33} && 0
+          \\
+          0 && 0 && 0 && 1
+          \end{smallmatrix}
+          \right]
+          $<br>
+          $
+          =
+          \left[
+          \begin{smallmatrix}
+          xm_{11}+ym_{21}+zm_{31} && xm_{12}+ym_{22}+zm_{32} && xm_{13}+ym_{23}+zm_{33} && 0
+          \end{smallmatrix}
+          \right]
+          $<br>
+          It ends up being a transformation that doesn't have translation.
+        </section>
+        <section>
+          What happens when $w = 0$ when the matrix contains a translation?<br>
+          $
+          \left[
+          \begin{smallmatrix}
+          x && y && z && 0
+          \end{smallmatrix}
+          \right]
+          \left[
+          \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13} && 0
+          \\
+          m_{21} && m_{22} && m_{23} && 0
+          \\
+          m_{31} && m_{32} && m_{33} && 0
+          \\
+          \Delta x && \Delta y && \Delta z && 1
+          \end{smallmatrix}
+          \right]
+          $<br>
+          $
+          =
+          \left[
+          \begin{smallmatrix}
+          xm_{11}+ym_{21}+zm_{31} && xm_{12}+ym_{22}+zm_{32} && xm_{13}+ym_{23}+zm_{33} && 0
+          \end{smallmatrix}
+          \right]
+          $<br>
+          Same result!
+        </section>
+        <section>
+          The $w$ component is effectively an on-off switch for the translation
+          part of a 4x4 matrix.<br>
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
