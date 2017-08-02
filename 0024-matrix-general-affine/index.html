@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>General Affine Transformations and Perspective Projection</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          General Affine Transformations<br>
+          and Perspective Projection
+        </section>
+        <section>
+          With 4x4 matrices, we now can create affine transformations.<br>
+          Without passing through origin:
+          <ul>
+            <li>scaling about a plane</li>
+            <li>rotating about an axis</li>
+            <li>reflecting about a plane</li>
+            <li>orthographic projection onto a plane</li>
+          </ul>
+        </section>
+        <section>
+          How? Translate the center of the transformation to the origin, perform the linear
+          transformations needed, and then transform back to original location.<br>
+          $M = TRT^{-1}$
+        </section>
+        <section>
+          $
+          T =
+          \left[
+          \begin{smallmatrix}
+          1 && 0 && 0 && 0
+          \\
+          0 && 1 && 0 && 0
+          \\
+          0 && 0 && 1 && 0
+          \\
+          p_x && p_y && p_z && 1
+          \end{smallmatrix}
+          \right]
+          =
+          \left[
+          \begin{smallmatrix}
+          I && 0
+          \\
+          p && 1
+          \end{smallmatrix}
+          \right]
+          $
+          <br>
+          $ R =
+          \left[
+          \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13} && 0
+          \\
+          m_{21} && m_{22} && m_{23} && 0
+          \\
+          m_{31} && m_{32} && m_{33} && 0
+          \\
+          0 && 0 && 0 && 1
+          \end{smallmatrix}
+          \right]
+          =
+          \left[
+          \begin{smallmatrix}
+          m_{3x3} && 0
+          \\
+          0 && 1
+          \end{smallmatrix}
+          \right]
+          $
+          <br>
+          $
+          T^{-1} =
+          \left[
+          \begin{smallmatrix}
+          1 && 0 && 0 && 0
+          \\
+          0 && 1 && 0 && 0
+          \\
+          0 && 0 && 1 && 0
+          \\
+          -p_x && -p_y && -p_z && 1
+          \end{smallmatrix}
+          \right]
+          =
+          \left[
+          \begin{smallmatrix}
+          I && 0
+          \\
+          -p && 1
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          $
+          TRT^{-1} =
+          \left[
+          \begin{smallmatrix}
+          I && 0
+          \\
+          p && 1
+          \end{smallmatrix}
+          \right]
+          \left[
+          \begin{smallmatrix}
+          m_{3x3} && 0
+          \\
+          0 && 1
+          \end{smallmatrix}
+          \right]
+          \left[
+          \begin{smallmatrix}
+          I && 0
+          \\
+          -p && 1
+          \end{smallmatrix}
+          \right]
+          $
+          <br>
+          $
+          =
+          \left[
+          \begin{smallmatrix}
+          R_{3x3} && 0
+          \\
+          pR_{3x3} - p && 1
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          Perspective Projection<br>
+          Recall in orthographic projection that we project a 3D object onto a 2D plane<br>
+          This 2D projection is a parallel projection because the projectors are parallel<br>
+          In Perspective projection, the projectors are no longer parallel, and intersect
+          at the center of projection.
+        </section>
+        <section>
+          If the center of projection is in front of the plane, the projection will be reversed.<br>
+          If the center of projection is behind the plane, the projection will not be reversed.<br>
+          The further away the center of projection is behind the plane, the perspective projection
+          gets smaller.
+        </section>
+        <section>
+          <img src="images/projection.jpg" />
+        </section>
+        <section>
+          Perspective Projection in 4D<br>
+          Assume $w=1$<br>
+          Compute $p^\prime$ to have common denominator.<br>
+          $d$ is the distance from the plane to the center of projection<br>
+          $p^\prime = \left[
+          \begin{smallmatrix}
+          dx/z && dy/z && d
+          \end{smallmatrix}
+          \right]$<br>
+          $=
+          \left[
+          \begin{smallmatrix}
+          dx/z && dy/z && dz/z
+          \end{smallmatrix}
+          \right]$<br>
+          $=
+          \frac{
+            \left[
+            \begin{smallmatrix}
+            x && y && z
+            \end{smallmatrix}
+            \right]
+          }{
+            z/d
+          }$<br>
+        </section>
+        <section>
+          Put this denominator into $w$<br>
+          $\left[
+          \begin{smallmatrix}
+          x && y && z && z/d
+          \end{smallmatrix}
+          \right]$
+          <br>
+          Need a matrix that converts a homogenous vector $\left[
+          \begin{smallmatrix}
+          x && y && z && 1
+          \end{smallmatrix}
+          \right]$ into the form above.<br>
+          $\left[
+          \begin{smallmatrix}
+          x && y && z && 1
+          \end{smallmatrix}
+          \right]$
+          $
+          \left[
+          \begin{smallmatrix}
+          1 && 0 && 0 && 0
+          \\
+          0 && 1 && 0 && 0
+          \\
+          0 && 0 && 1 && 1/d
+          \\
+          0 && 0 && 0 && 0
+          \end{smallmatrix}
+          \right]
+          $<br>
+          Now we have a 4x4 projection matrix for projecting onto the plane $z=d$.
+        </section>
+        <section>
+          Notes<br>
+          <ul>
+            <li>Doesn't perform the perspective transform, just computes denominator w</li>
+            <li>Many variations, if we change plane of projection to $z=0$ and center
+            of projection at $[0,0,-d]$, we have a slightly different equation</li>
+          </ul>
+        </section>
+        <section>
+          Notes<br>
+          <ul>
+            <li>Why not just divide by $z$? This allows us to express projection as a transformation,
+            and allows non-axially aligned planes</li>
+            <li>This wouldn't be the same as a real graphics pipeline. We're discarding z, which
+            real pipelines may need for things like z-buffering.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
