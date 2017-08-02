@@ -15,7 +15,7 @@ View at: http://localhost:8080/
 
 ## CONCEPTS:
 
-* Matrix Math: Arbitrary Determinant
+* Matrix Math: Inverse of a matrix
 
 ## RESOURCES:
 
