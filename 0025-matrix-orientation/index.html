@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrix Orientation</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Matrix Orientation <br>
+          and Angular Displacement
+        </section>
+        <section>
+          Orientation is given by a rotation from a known reference orientation
+          (identity or home orientation).<br>
+          This rotation amount is called angular displacement.
+        </section>
+        <section>
+          Orientation will be used in for parent/child relationships<br>
+          Angular displacement will be used for source/destination relationships<br>
+          The distinction between the two is similar as the distinction between
+          points and vectors, mathematically equivalent but not identical conceptually.
+        </section>
+        <section>
+          Matrix Form<br>
+          $
+          \left[
+          \begin{smallmatrix}
+          m_{11} && m_{12} && m_{13}
+          \\
+          m_{21} && m_{22} && m_{23}
+          \\
+          m_{31} && m_{32} && m_{33}
+          \end{smallmatrix}
+          \right]
+          $<br>
+          First row is x, second is y, third is z
+        </section>
+        <section>
+          Advantages of Matrix Form<br>
+          <ul>
+            <li>
+              Rotation of vectors is immediately available: use a matrix to
+              rotate between object and inertial space.
+            </li>
+            <li>
+              Format used by graphics APIs: you can do other forms internally
+              but must convert into matrices at some point.
+            </li>
+          </ul>
+        </section>
+        <section>
+          Advantages of Matrix Form<br>
+          <ul>
+            <li>
+              Concatenation of multiple angular displacements: if we know
+              orientation of obj A to obj B and obj B to obj C, then we know
+              obj A to obj C.
+            </li>
+            <li>
+              Matrix inversion: easy to compute the opposite angular displacement.
+              Due to rotation matrix being orthogonal, trivial to compute transposing the matrix.
+            </li>
+          </ul>
+        </section>
+        <section>
+          Disadvantages of Matrix Form<br>
+          <ul>
+            <li>
+              Matrices take more memory: nine numbers needed instead of only three.
+              If we have an animation with 10 parts, at 15 Hz, that's 150 orientations/second.
+              With 32-bit floating point numbers: $15*9*32/8 = 5400$ bytes/frame.
+              Euler Angles would only be 1800 bytes.
+            </li>
+          </ul>
+        </section>
+        <section>
+          Disadvantages of Matrix Form<br>
+          <ul>
+            <li>
+              Difficult for humans: too many #s, all between -1 and 1.
+            </li>
+            <li>
+              Matrices can be malformed: six degrees of redundancy (nine numbers
+              when only three are needed).
+            </li>
+          </ul>
+        </section>
+        <section>
+          Disadvantages of Matrix Form<br>
+          How can we end up with a bad matrix?<br>
+          <ul>
+            <li>
+              Suppose we have a matrix that contains a scale, skew, or reflection.
+              There is no definition of an orientation of an object affected by these.
+              Any non-orthogonal matrix is not a well-defined rotation matrix.
+            </li>
+            <li>
+              We may get bad data from an external source (modeling software, etc)
+            </li>
+            <li>
+              Floating-point round off errors. This is known as matrix creep.
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
