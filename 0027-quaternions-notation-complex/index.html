@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Introduction to Quaternions</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Quaternions<br>
+          Notation, Complex Numbers, <br>
+          Axis-Angle Pair, Negation
+        </section>
+        <section>
+          Quaternion Notation<br>
+          <ul>
+            <li>use <i>four</i> numbers to express orientation</li>
+            <li>contains a scalar component ($w$) + a 3D vector component ($v$), or ($x,y,z$)</li>
+            <li>note: no difference between row vs column notation</li>
+          </ul>
+          $\left[\begin{smallmatrix}
+          w && v
+          \end{smallmatrix}\right]$
+          <br>
+          $\left[\begin{smallmatrix}
+          w && (x && y && z)
+          \end{smallmatrix}\right]$
+        </section>
+        <section>
+          Quaternions as Complex Numbers<br>
+          Quaternions extend the complex number system with three imaginary numbers:<br>
+          $i^2 = j^2 = k^2 = -1$<br>
+          $ij = k, ji = -k$<br>
+          $jk = i, kj = -i$<br>
+          $ki = j, ik = -ij$<br>
+          $\left[\begin{smallmatrix}
+          w && (x\enspace y\enspace z)
+          \end{smallmatrix}\right]
+          = w+xi + yj + zk
+          $
+        </section>
+        <section>
+          Quaternions as axis-angle pair<br>
+          The axis-angle pair $(\theta, n)$ defines the angular displacement of $\theta$ radians
+          about the axis specified by $n$.<br>
+          The four values of a quaternion:<br>
+          $q =
+          \left[\begin{smallmatrix}
+          cos(\theta/2) && sin(\theta/2)n
+          \end{smallmatrix}\right]
+          $<br>
+          $
+          =
+          \left[\begin{smallmatrix}
+          cos(\theta/2) && (sin(\theta/2)n_x && cos(\theta/2)n_y && sin(\theta/2)n_z )
+          \end{smallmatrix}\right]
+          $
+        </section>
+        <section>
+          Quaternion Negation<br>
+          Quaternions negation is done easily:<br>
+          The four values of a quaternion:<br>
+          $-q =
+          -\left[\begin{smallmatrix}
+          w && (x && y && z)
+          \end{smallmatrix}\right]
+          $
+          $= \left[\begin{smallmatrix}
+          -w && (-x && -y && -z)
+          \end{smallmatrix}\right]$
+          <br>
+          $=-\left[\begin{smallmatrix}
+          w && v
+          \end{smallmatrix}\right]$
+          $=\left[\begin{smallmatrix}
+          -w && -v
+          \end{smallmatrix}\right]$
+        </section>
+        <section>
+          Quaternion Negation<br>
+          $q$ and $-q$ represent the same angular displacement.<br>
+          Adding $360^{\circ}$ to $\theta$ doesn't change the angular displacement,
+          but negates all the components of $q$.
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
