@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Euler Angles</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Euler Angles<br>
+          Orientation / Angular Displacement
+        </section>
+        <section>
+          "Oiler" Angles<br>
+          Define an angular displacement as a sequence of three rotations about three
+          mutually perpendicular axes.<br>
+          What axes? What order?<br>
+          Normally use the cardinal axes and the "heading-pitch-bank" convention.
+        </section>
+        <section>
+          Heading-pitch-bank<br>
+          Orientation is defined by a heading angle, a pitch angle, and a bank angle.<br>
+          Recall we're using the left-hand system: +x is right, +y is up, +z is forward.<br>
+          Heading is first and rotates about the y-axis<br>
+          Pitch is second and rotates about the (object space) x-axis<br>
+          Bank is last and rotates about the (object space) z-axis
+        </section>
+        <section>
+          Order is heading, pitch, then bank- when rotating object from inertial
+          space into object space.<br>
+          If rotating from object space into inertial space, then it is the opposite:<br>
+          bank, pitch, then heading.<br>
+          Similar to "roll-pitch-yaw" where bank is synonymous with roll, and
+          yaw is pseudo-synonymous with heading, and in the reverse order.
+        </section>
+        <section>
+          Conventions<br>
+          <ul>
+            <li>
+              Any three mutually perpendicular axes can define an orientation.
+            </li>
+            <li>
+              Any three axes can be used as the axes of rotation- they don't have to be
+              cardinal axes.
+            </li>
+            <li>
+              It isn't necessary to define left or right-hand rules for which direction
+              is positive for each rotation.
+            </li>
+            <li>
+              Rotations can be in a different order, and order does matter. Heading-pitch-bank
+              is just the most common and normally most useful.
+            </li>
+          </ul>
+        </section>
+        <section>
+          Advantages of Euler Angles<br>
+          <ul>
+            <li>
+              Easy for humans: The numbers used are angles, which is how we think
+              about orientation. When orientations need to be displayed, then
+              the only real choice is euler angles.
+            </li>
+            <li>
+              Smallest memory: 1/3 the size of matrices.
+            </li>
+            <li>
+              Any set of three numbers is valid: there may be incorrect numbers
+              but any three numbers will always be valid.
+            </li>
+          </ul>
+        </section>
+        <section>
+          Disadvantages of Euler Angles: Aliasing<br>
+          The representation for a given orientation is not unique: for any given
+          orientation, there are many Euler angle triplets that can describe that
+          orientation. An example would be adding $360^{\circ}$ to
+          one angle. Also each angle isn't independent of the others: pitching
+          down $135^{\circ}$ is equal to heading $180^{\circ}$ pitching down $45^{\circ}$,
+          and banking $180^{\circ}$. To solve this issue, we normally restrict range of
+          angles (heading/bank to $\pm180^{\circ}$, pitch to $\pm90^{\circ}$)
+        </section>
+        <section>
+          Disadvantages of Euler Angles: Gimbal Lock<br>
+          Famous aliasing problem- if we pitch angle of $\pm90^{\circ}$ then we can
+          only rotate about the vertical axis. The first and third rotations are
+          then rotating about the same axis.<br>
+          To fix this issue, all rotations about the vertical axis are assigned to
+          heading in the Gimbal lock scenario (bank is then zero).
+        </section>
+        <section>
+          Disadvantages of Matrix Form: Interpolation<br>
+          Interpolating between two angles is difficult.<br>
+          Naive solution (non-canonical Euler angles):<br>
+          $\Delta\theta = \theta_1 - \theta_0$<br>
+          $\theta_t = \theta_0 + t\Delta\theta$<br>
+          The issue with this is that if orientation A is $720^{\circ}$, and orientation
+          B is only $25^{\circ}$, we'll spin around the axis in the wrong direction
+          multiple times before getting to the correct orientation.
+        </section>
+        <section>
+          Disadvantages of Matrix Form: Interpolation<br>
+          Canonic Euler Angles:<br>
+          Orientation A = $-160^{\circ}$<br>
+          Orientation B = $160^{\circ}$<br>
+          Only $40^{\circ}$ apart, but goes the wrong way around to get to it.<br>
+          Solution: wrap them<br>
+          $wrap(x) = x - 360^{\circ} \left\lfloor{(x + 180^{\circ})/360^{\circ}}\right\rfloor$<br>
+          $\Delta\theta = wrap(\theta_1 - \theta_0)$<br>
+          $\theta_t = \theta_0 + t\Delta\theta$
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
