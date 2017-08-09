@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quaternions Part 2</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Quaternions<br>
+          Identity Quaternions<br>
+          Quaternions Magnitude<br>
+          Quaternion Conjugate and Inverse
+        </section>
+        <section>
+          Identity Quaternions<br>
+          Geometrically: Two identity quaternions, which represent no angular displacement:<br>
+          $[1, (0,0,0)]$ and $[-1, (0,0,0)]$
+        </section>
+        <section>
+          Identity Quaternions<br>
+          When $\theta$ is an even multiple of $360^{\circ}$ then $cos(\theta/2) = 1$
+          so we have the first form.<br>
+          When $\theta$ is an odd multiple of $360^{\circ}$ then $cos(\theta/2) = -1$
+          so we have the second form.<br>
+          During both $sin(\theta/2) = 0$ so the value of $n$ is unimportant.
+        </section>
+        <section>
+          Identity Quaternions<br>
+          Mathematically: one identity quaternion: $[1, (0,0,0)]$.
+          When we have $-q$ (after multiplying by $[-1, (0,0,0)]$, we don't have
+          $q = -q$ are equal, thus, mathematically, $[-1, (0,0,0)]$ is not a mathematical
+          identity
+        </section>
+        <section>
+          Quaternion Magnitude<br>
+          Recall the formula for vector magnitude: <br>
+          $\left\Vert v\right\Vert = \sqrt{\sum_{i=1}^n {v_i}^2}$<br>
+          The formula is similar for quaternions:<br>
+          $\left\Vert q\right\Vert
+          = \left\Vert \left[\begin{smallmatrix}
+          w && (x && y && z)
+          \end{smallmatrix}\right] \right\Vert
+          = \sqrt{w^2+x^2+y^2+z^2}$<br>
+          $
+          = \left\Vert \left[\begin{smallmatrix}
+          w && v
+          \end{smallmatrix}\right] \right\Vert
+          = \sqrt{w^2 + \left\Vert v \right\Vert^2}$
+        </section>
+        <section>
+          Quaternion Magnitude<br>
+          Geometrically, substituting $\theta$ and $n$:<br>
+          $\left\Vert q\right\Vert
+          = \sqrt{w^2 + \left\Vert v \right\Vert^2}
+          $
+          <br>
+          $= \sqrt{cos^2(\theta/2) + (sin(\theta/2)\left\Vert n\right\Vert)^2}$
+          <br>
+          $= \sqrt{cos^2(\theta/2) + sin^2(\theta/2)\left\Vert n\right\Vert^2}$
+        </section>
+        <section>
+          Quaternion Magnitude<br>
+          $n$ is unit length:<br>
+          $= \sqrt{cos^2(\theta/2) + sin^2(\theta/2)(1)}$<br>
+          $= \sqrt{cos^2(\theta/2) + sin^2(\theta/2)}$<br>
+          Trig Identity ($cos^2x + sin^2x = 1$)<br>
+          $= \sqrt{1} = 1$<br>
+          Note: we'll only be using unit quaternions
+        </section>
+        <section>
+          Quaternion Conjugate<br>
+          Conjugate Notation: $q^*$<br>
+          Obtained by negating the vector portion of the quaternion:<br>
+          $q^* =
+          \left[\begin{smallmatrix}
+          w && v
+          \end{smallmatrix}\right]^*
+          = \left[\begin{smallmatrix}
+          w && -v
+          \end{smallmatrix}\right]
+          $
+          <br>
+          $
+          \left[\begin{smallmatrix}
+          w && (x && y && z)
+          \end{smallmatrix}\right]^*
+          =
+          \left[\begin{smallmatrix}
+          w && (-x && -y && -z)
+          \end{smallmatrix}\right]
+          $
+        </section>
+        <section>
+          Quaternion Inverse<br>
+          Inverse notation: $q^{-1}$<br>
+          $q^{-1} = \frac{q^*}{\left\Vert q\right\Vert}$
+        </section>
+        <section>
+          Quaternion Inverse Notes<br>
+          When we multiply a quaternion and its inverse, we get the identity quaternion:<br>
+          $qq^{-1} = \left[\begin{smallmatrix}
+          1 && 0
+          \end{smallmatrix}\right]
+          $<br>
+          For our purposes, using unit quaternions, conjugate and inverse will be equal.
+        </section>
+        <section>
+          Conjugate (Inverse) notes:<br>
+          $q$ and $q^*$ represent opposite angular displacements. When we negate $v$, we
+          negate the axis of rotation $n$. This in turn reverses the "positive rotation".
+          So $q$ rotates about an axis by amount $\theta$ and $q^*$ rotates in the opposite
+          direction by the same amount.
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>

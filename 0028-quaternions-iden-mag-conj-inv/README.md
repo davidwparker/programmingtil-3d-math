@@ -16,13 +16,12 @@ View at: http://localhost:8080/
 ## CONCEPTS:
 
 * Quaternions
-* Quaternion Notation
-* Quaternions as Complex Numbers
-* Quaternions as Axis-Angle Pairs
-* Quaternion Negation
+* Identity Quaternions
+* Quaternions Magnitude
+* Quaternion Conjugate and Inverse
 
 ## RESOURCES:
 
-* Code / Slides: https://github.com/davidwparker/programmingtil-3d-math/tree/master/0027-quaternions-notation-complex
+* Code / Slides: https://github.com/davidwparker/programmingtil-3d-math/tree/master/0028-quaternions-iden-mag-conj-inv
 * Slides JS: https://github.com/hakimel/reveal.js/
 * Math JS: https://www.mathjax.org/
