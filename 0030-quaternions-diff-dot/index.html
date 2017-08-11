@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quaternions Part 4</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Quaternion Difference<br>
+          Quaternion Dot Product<br>
+        </section>
+        <section>
+          Quaternion Difference<br>
+          "Difference" being defined as the angular displacement from one orientation
+          to another: for orientations a and b, we can compute the angular
+          displacement d which rotates from a to b.<br>
+          $ad = b$
+        </section>
+        <section>
+          Quaternion Difference<br>
+          Solving for $d$<br>
+          $a^{-1}(ad) = a^{-1}b$<br>
+          $(a^{-1}a)d = a^{-1}b$<br>
+          $[1 \enspace 0]d = a^{-1}b$<br>
+          $d = a^{-1}b$<br>
+          Note: mathematicaly, it's closer to <i>division</i> than <i>difference</i>
+        </section>
+        <section>
+          Quaternion Dot Product<br>
+          Notation and definition is similar to vector dot product<br>
+          $
+          q_1 \cdot q_2
+          = \left[\begin{smallmatrix}
+          w_1 && v_1
+          \end{smallmatrix}\right]
+          \cdot
+          \left[\begin{smallmatrix}
+          w_2 && v_2
+          \end{smallmatrix}\right]
+          =
+          w_1w_2 + v_1 \cdot v_2
+          $
+          <br>
+          $
+          q_1 \cdot q_2
+          = \left[\begin{smallmatrix}
+          w_1 && (x_1 && y_1 && z_1)
+          \end{smallmatrix}\right]
+          \cdot
+          = \left[\begin{smallmatrix}
+          w_2 && (x_2 && y_2 && z_2)
+          \end{smallmatrix}\right]
+          $
+          <br>
+          $
+          = w_1w_2 + x_1x_2 + y_1y_2 + z_1z_2
+          $
+        </section>
+        <section>
+          Notes<br>
+          <ul>
+            <li>Like the vector dot product, the result is a scalar.</li>
+            <li>For unit quats $a$ and $b$, $-1 \leq a \cdot b \leq 1$</li>
+            <li>Interested in absolute value of $a\cdot b$ because $a\cdot b = -(a\cdot -b)$</li>
+            <li>Geometric intepretation is similar to the interpretation of the vector dot product:
+              the larger the absolute value, the more similar the angular displacements of $a$ and $b$
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
