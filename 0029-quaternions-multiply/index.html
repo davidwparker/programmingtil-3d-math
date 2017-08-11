@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quaternions Part 3</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Quaternion Multiplication<br>
+          (Cross Product)<br>
+        </section>
+        <section>
+          Multiplication<br>
+          Recall quaternion as a complex number:<br>
+          $w + xi + yj + zk$.<br>
+          We can multiply using this definition:<br>
+          $(w_1 + x_1i + y_1j + z_1k)(w_2 + x_2i + y_2j + z_2k)$
+        </section>
+        <section>
+          $(w_1 + x_1i + y_1j + z_1k)(w_2 + x_2i + y_2j + z_2k)$<br>
+          $ = w_1w_2 + w_1x_2i + w_1y_2j + w_1z_2k$<br>
+          $+ x_1w_2i + x_1x_2i^2 + x_1y_2ij + x_1z_2ik$<br>
+          $+ y_1w_2j + y_1x_2ji + y_1y_2j^2 + y_1z_2jk$<br>
+          $+ z_1w_2k + z_1x_2ki + z_1y_2kj + z_1z_2k^2$<br>
+        </section>
+        <section>
+          $(w_1 + x_1i + y_1j + z_1k)(w_2 + x_2i + y_2j + z_2k)$<br>
+          $ = w_1w_2 + w_1x_2i + w_1y_2j + w_1z_2k$<br>
+          $+ x_1w_2i + x_1x_2(−1) + x_1y_2k + x_1z_2(−j)$<br>
+          $+ y_1w_2j + y_1x_2(−k) + y_1y_2(−1) + y_1z_2i$<br>
+          $+ z_1w_2k + z_1x_2j + z_1y_2(−i) + z_1z_2(−1)$<br>
+        </section>
+        <section>
+          $(w_1 + x_1i + y_1j + z_1k)(w_2 + x_2i + y_2j + z_2k)$<br>
+          $= w_1w_2 − x_1x_2 − y_1y_2 − z_1z_2$<br>
+          $+ (w_1x_2 + x_1w_2 + y_1z_2 − z_1y_2)i$<br>
+          $+ (w_1y_2 + y_1w_2 + z_1x_2 − x_1z_2)j$<br>
+          $+ (w_1z_2 + z_1w_2 + x_1y_2 − y_1x_2)k$<br>
+        </section>
+        <section>
+          Now we have the standard definition for quaternion multiplication<br>
+          $
+          \left[\begin{smallmatrix}
+          w_1 && (x_1 && y_1 && z_1)
+          \end{smallmatrix}\right]
+          \left[\begin{smallmatrix}
+          w_2 && (x_2 && y_2 && z_2)
+          \end{smallmatrix}\right]
+          $<br>
+          $
+          = \left[\begin{smallmatrix}
+          w_1w_2 - x_1x_2 - y_1y_2 - z_1z_2 \\
+          \left(\begin{smallmatrix}
+          w_1x_2 + x_1w_2 + z_1y_2 - y_1z_2 \\
+          w_1y_2 + y_1w_2 + x_1z_2 - z_1x_2 \\
+          w_1z_2 + z_1w_2 + y_1x_2 - x_1y_2
+          \end{smallmatrix}\right)
+          \end{smallmatrix}\right]
+          $<br>
+          $
+          \left[\begin{smallmatrix}
+          w_1 && v_1
+          \end{smallmatrix}\right]
+          \left[\begin{smallmatrix}
+          w_2 && v_2
+          \end{smallmatrix}\right]
+          $<br>
+          $
+          =
+          \left[\begin{smallmatrix}
+          w_1w_2 - v_1 \cdot v_2 && w_1v_2 + w_2v_1 + v_2 \times v_1
+          \end{smallmatrix}\right]
+          $
+        </section>
+        <section>
+          Quaternion Multiplication Notes<br>
+          It is associative:<br>
+          $(ab)c = a(bc)$<br>
+          It is not commutative<br>
+          $ab \neq ba$
+        </section>
+        <section>
+          Quaternion Magnitude of products<br>
+          $
+          \left\Vert \left[\begin{smallmatrix}
+          w_1 && (x_1 && y_1 && z_1)
+          \end{smallmatrix}\right]
+          \left[\begin{smallmatrix}
+          w_2 && (x_2 && y_2 && z_2)
+          \end{smallmatrix}\right] \right\Vert
+          $<br>
+          $
+          = \left\Vert \left[\begin{smallmatrix}
+          w_1w_2 - x_1x_2 - y_1y_2 - z_1z_2 \\
+          \left(\begin{smallmatrix}
+          w_1x_2 + x_1w_2 + z_1y_2 - y_1z_2 \\
+          w_1y_2 + y_1w_2 + x_1z_2 - z_1x_2 \\
+          w_1z_2 + z_1w_2 + y_1x_2 - x_1y_2
+          \end{smallmatrix}\right)
+          \end{smallmatrix}\right] \right\Vert
+          $<br>
+          $
+          = \sqrt{
+          (w_1w_2 - x_1x_2 - y_1y_2 - z_1z_2)^2 \\
+          +(w_1x_2 + x_1w_2 + z_1y_2 - y_1z_2)^2 \\
+          +(w_1y_2 + y_1w_2 + x_1z_2 - z_1x_2)^2 \\
+          +(w_1z_2 + z_1w_2 + y_1x_2 - x_1y_2)^2
+          }
+          $
+        </section>
+        <section>
+          Continued: skipping expanding and canceling terms, factoring<br>
+          $
+          = \sqrt{
+          {w_1}^2({w_2}^2+{x_2}^2+{y_2}^2+{z_2}^2) \\
+          +{x_1}^2({w_2}^2+{x_2}^2+{y_2}^2+{z_2}^2) \\
+          +{y_1}^2({w_2}^2+{x_2}^2+{y_2}^2+{z_2}^2) \\
+          +{z_1}^2({w_2}^2+{x_2}^2+{y_2}^2+{z_2}^2)
+          }
+          $<br>
+          $
+          =
+          \sqrt{({w_1}^2+{x_1}^2+{y_1}^2+{z_1}^2)({w_2}^2+{x_2}^2+{y_2}^2+{z_2}^2)}
+          $
+        </section>
+        <section>
+          Continued: Apply the definition of magnitude<br>
+          $
+          \left\Vert
+          q_1 q_2
+          \right\Vert
+          =
+          \sqrt{
+          \left\Vert
+          q_1
+          \right\Vert^2
+          \left\Vert
+          q_2
+          \right\Vert^2
+          }
+          $
+          <br>
+          $=
+          \left\Vert
+          q_1
+          \right\Vert
+          \left\Vert
+          q_2
+          \right\Vert
+          $
+        </section>
+        <section>
+          But what does it all mean???<br>
+          The magnitude of a quaternion product is equal to the product of the magnitudes<br>
+          Thus when we have two unit quaternions, and we multiply, the result is a unit magnitude.
+        </section>
+        <section>
+          Quaternion Inverse of Product<br>
+          $(ab)^{-1} = b^{-1}a^{-1}$<br>
+          $(q_1q_2...q_n)^{-1} = {q_n}^{-1}...{q_2}^{-1}{q_1}^{-1}$
+        </section>
+        <section>
+          Properties of Quaternions<br>
+          A standard xyz point $p$, by defining the Quat $p = [0,(x,y,z)]$.<br>
+          $q$ is a rotation Quat in the form $[cos\theta/2, n\enspace sin\theta/2]$, where
+          $n$ is a unit vector axis of rotation and $\theta$ is the rotation angle.<br>
+          We can rotate 3D point $p$ about $n$ by performing the Quat multiplication<br>
+          $p^\prime = qpq^{-1}$
+        </section>
+        <section>
+          Properties of Quaternions<br>
+          What about multiple rotations?<br>
+          Rotate point $p$ by quat $a$ then quat $b$:<br>
+          $p^\prime = b(apa^{-1})b^{-1}$<br>
+          $= (ba)p(a^{-1}b^{-1})$<br>
+          $= (ba)p(ba)^{-1}$
+        </section>
+        <section>
+          Properties of Quaternions: multiple rotations cont.<br>
+          Rotating by $a$ then $b$ is the same as a single rotation by $ba$.<br>
+          We can concatenate multiple rotations! <br>
+          Though these occur in the order of right to left... (different than matrix
+          form of left to right).<br>
+        </section>
+        <section>
+          Properties of Quaternions: multiple rotations cont.<br>
+          For our purposes, we'll do our operands in the reverse order.<br>
+          Only the cross product is changed:<br>
+          $
+          \left[\begin{smallmatrix}
+          w_1 && v_1
+          \end{smallmatrix}\right]
+          \left[\begin{smallmatrix}
+          w_2 && v_2
+          \end{smallmatrix}\right]
+          $<br>
+          $
+          =
+          \left[\begin{smallmatrix}
+          w_1w_2 - v_1 \cdot v_2 && w_1v_2 + w_2v_1 + v_1 \times v_2
+          \end{smallmatrix}\right]
+          $<br>
+          Note: this doesn't change properties of quaternions or geometric interpretation
+        </section>
+        <section>
+          Properties of Quaternions: multiple rotations cont.<br>
+          When we multiply, with our definition we multiply by quaternion on the right and
+          inverse on the left:<br>
+          $p^\prime = q^{-1}pq$<br>
+          This alters the formula to be left to right order:<br>
+          $p^\prime = b^{-1}(a^{-1}pa)b$<br>
+          $= (b^{-1}a^{-1})p(ab)$<br>
+          $= (ab)^{-1}p(ab)$
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
