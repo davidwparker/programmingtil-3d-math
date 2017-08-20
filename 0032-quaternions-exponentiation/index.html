@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quaternions Part 6</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Quaternion <br>
+          Exponentiation
+        </section>
+        <section>
+          "Raised to a power": $q^t$<br>
+          (not to be confused with exponential from last episode)<br>
+          Recall:<br>
+          $a^0 = 1$ & $a^1 = a$ where $a$ is a nonzero scalar<br>
+          $0 ... t ... 1 \rightarrow 1 ... a^t ... a$<br>
+          $0 ... t ... 1 \rightarrow [1,0] ... q^t ... q$
+        </section>
+        <section>
+          Gives us a fraction of an angular displacement<br>
+          Beyond $0 ... 1$ range, also normal (**mostly):<br>
+          $q^2$ is twice the angular displacement of $q$.<br>
+          **NOTE: quaternions represent angular displacement using the shortest arc.
+          There are no multiple spins. If $q = 30^\circ$ clockwise, then $q^4 \neq
+          240^\circ$ clockwise.<br>
+          Instead, it is $80^\circ$ counterclockwise. Rotating $240^\circ$ CW is the same
+          as rotating $80^\circ$ CCW.
+        </section>
+        <section>
+          Due to this fact, some things aren't trivial:<br>
+          $(q^4)^{1/2} \neq q^2$<br><br>
+          Formal definition<br>
+          $q^t = exp(t\ log\ q)$
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
