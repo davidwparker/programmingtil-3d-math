@@ -15,11 +15,10 @@ View at: http://localhost:8080/
 
 ## CONCEPTS:
 
-* Quaternion Splines
+* Comparison of Orientation Representations
 
 ## RESOURCES:
 
-* Code / Slides: https://github.com/davidwparker/programmingtil-3d-math/tree/master/0034-quaternions-splines
+* Code / Slides: https://github.com/davidwparker/programmingtil-3d-math/tree/master/0035-orientation-comparison
 * Slides JS: https://github.com/hakimel/reveal.js/
 * Math JS: https://www.mathjax.org/
-* Quaternions: https://en.wikipedia.org/wiki/Quaternion
