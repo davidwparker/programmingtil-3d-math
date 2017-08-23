@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quaternions Part 7</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Quaternion <br>
+          Interpolation (Slerp)
+        </section>
+        <section>
+          slerp: Spherical Linear intERPolation<br>
+          Smoothly interpolate between two quaternions.
+        </section>
+        <section>
+          Slerp takes 3 parameters: $q_0$ and $q_1$ which are the starting and
+          ending quaternions and $t$, which is the interpolation parameter ($0$ to $1$).
+        </section>
+        <section>
+          Standard linear interpolation:<br>
+          $\Delta a = a_1 - a_0$<br>
+          $lerp(a_0, a_1, t) = a_0 + t\Delta a$<br>
+        </section>
+        <section>
+          Starts at $a_0$ and add $t^{th}$ differ between $a_1$ and $a_0$<br>
+          <ul>
+            <li>Compute difference</li>
+            <li>Take a fraction of the difference</li>
+            <li>Take original value and adjust by fraction of the diffence</li>
+          </ul>
+        </section>
+        <section>
+          Compute the difference<br>
+          Angular displacement:<br>
+          $\Delta q = q_0^{-1}q_1$
+        </section>
+        <section>
+          Take a fraction of the difference<br>
+          Quaternion exponentiation:<br>
+          $\Delta q^t$
+        </section>
+        <section>
+          Take original value and adjust by fraction of the diffence<br>
+          Use quaternion multiplication to adjust the initial value:<br>
+          $q_0 \Delta q^t$
+        </section>
+        <section>
+          Slerp (theoretical formula):<br>
+          $slerp(q_0,q_1,t) = q_0(q_0^{-1}q_1)^t$
+        </section>
+        <section>
+          In practice, its much simpler.<br>
+          All quaternions exist on the same 4D "sphere" (because they're all unit
+          quaternions). We can connect two quats by connecting the arc of the sphere.
+        </section>
+        <section>
+          Plane example with rotation<br>
+          Two 2D Vectors: $v_0$ and $v_1$ (unit length). $t$ fraction, with
+          $\omega$ angle between $v_0$ and $v_1$<br>
+          <img src="images/slerp1.png" class="img" />
+        </section>
+        <section>
+          Plane example with rotation<br>
+          $v_t = k_0v_0 + k_1v_1$<br>
+          <img src="images/slerp2.png" class="img" />
+        </section>
+        <section>
+          Plane example with rotation<br>
+          Solving for $k_1$ and $k_0$ with trig:<br>
+          $sin\ \omega = \frac{sin\ t\omega}{k_1}$<br>
+          $k_1 = \frac{sin\ t\omega}{sin\ \omega}$<br><br>
+          $k_0 = \frac{sin(1 - t)\omega}{sin\ \omega}$
+        </section>
+        <section>
+          $v_t = k_0v_0 + k_1v_1$<br>
+          $v_t = \frac{sin(1 - t)\omega}{sin\ \omega}v_0 + \frac{sin\ t\omega}{sin\ \omega}v_1$
+        </section>
+        <section>
+          With slerp:<br>
+          $slerp(q_0,q_1,t) =
+          \frac{sin(1 - t)\omega}{sin\ \omega}q_0 +
+          \frac{sin\ t\omega}{sin\ \omega}q_1$
+        </section>
+        <section>
+          Use dot product to compute the 'angle' between the quats.<br>
+          Because $q$ and $-q$ aren't the same orientation, we need to choose $q_0$ and
+          $q_1$ so the dot product between them is nonnegative.<br>
+          Also, if $q_0$ and $q_1$ are too close, $sin\ \theta$ will be very small which
+          will be an issue in division. In this case, we'll use linear interpolation.
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
