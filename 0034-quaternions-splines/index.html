@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quaternions Part 8</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Quaternion <br>
+          Splines "Squad"<br>
+          Advantages / Disadvantages of Quats
+        </section>
+        <section>
+          Squad: Spherical QUADrangle<br>
+          Used to trace out a path between points and we have a sequence of more than
+          two orientations which we want to interpolate.<br>
+        </section>
+        <section>
+          Our "control points" will be a sequence of quaternions:<br>
+          $q_1, q_2 ... q_{n-1},q_n$<br>
+          Helper quaternion $s_i$ (intermediate control point):<br>
+          $s_i = exp(-\frac{log(q_{i+1}q_i^{-1}) + log(q_{i-1}q_i^{-1})}{4})q_i$<br>
+          note $s_1$ and $s_n$ will be undefined.
+        </section>
+        <section>
+          With four adjacent control points, squad is used to compute interpolation
+          between the middle two.<br>
+          Control points: $q_{i-1},q_i,q_{i+1},q_{i+2}$<br>
+          Interpolation param $t$ (0...1)<br>
+          <div style="font-size:0.7em;">
+            $squad(q_i,q_{i+1},s_i,s_{i+1},t) = $<br>
+            $slerp(slerp(q_i,q_{i+1},t), slerp(s_i,s_{i+1},t), 2t(1-t))$
+          </div>
+        </section>
+        <section>
+          Advantages<br>
+          <ul>
+            <li>Smooth interpolations</li>
+            <li>Fast concatenation of angular displacements</li>
+            <li>Fast inversion of angular displacements</li>
+            <li>Fast conversio to/from matrix form</li>
+            <li>Only four numbers</li>
+          <ul>
+        </section>
+        <section>
+          Disadvantages<br>
+          <ul>
+            <li>33% Bigger that Euler angels</li>
+            <li>Can become invalid (overcome by normalizing)</li>
+            <li>Difficult for humans</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
