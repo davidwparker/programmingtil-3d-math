@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Comparison of Orientation Representations</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Comparison of Orientation Representations
+          Matrices, Euler Angles, Quaternions
+        </section>
+        <section>
+          Rotating points between coodinate spaces<br>
+          Matrix: Possible<br>
+          Euler: Impossible (convert to Matrix)<br>
+          Quat: Impossible (convert to Matrix)
+        </section>
+        <section>
+          Concatenation or incremental rotation<br>
+          Matrix: Possible. Usually slower than Quat. Matrix creep<br>
+          Euler: Impossible<br>
+          Quat: Possible. Usually faster than matrix.
+        </section>
+        <section>
+          Interpolation<br>
+          Matrix: Impossible<br>
+          Euler: Possible. Aliasing may cause Gimbal locks.<br>
+          Quat: Possible. Slerp provides smooth interpolations.
+        </section>
+        <section>
+          Human Friendly<br>
+          Matrix: No<br>
+          Euler: Yes<br>
+          Quat: No
+        </section>
+        <section>
+          Storage size<br>
+          Matrix: 9 numbers<br>
+          Euler: 3 numbers<br>
+          Quat: 4 numbers
+        </section>
+        <section>
+          Representation is unique for given orientation<br>
+          Matrix: Yes<br>
+          Euler: No<br>
+          Quat: Two distinct representations for any orientation, which are negates of
+          one another.
+        </section>
+        <section>
+          Can become invalid?<br>
+          Matrix: creep can occur<br>
+          Euler: Any three numbers are valid<br>
+          Quat: Error creep can occur
+        </section>
+        <section>
+          Notes:<br>
+          Euler is great for humans to work with. Don't forget that. Optimize later, when needed<br>
+          Matrix must be used if vector coordinate space transformations are needed.<br>
+          For animations, use something smaller (Euler or Quat)<br>
+          Quats are great at interpolation
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
