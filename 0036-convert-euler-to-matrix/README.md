@@ -19,6 +19,6 @@ View at: http://localhost:8080/
 
 ## RESOURCES:
 
-* Code / Slides: https://github.com/davidwparker/programmingtil-3d-math/tree/master/0036-euler-to-matrix
+* Code / Slides: https://github.com/davidwparker/programmingtil-3d-math/tree/master/0036-convert-euler-to-matrix
 * Slides JS: https://github.com/hakimel/reveal.js/
 * Math JS: https://www.mathjax.org/
