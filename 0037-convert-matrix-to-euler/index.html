@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Converting 2</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Converting 2<br>
+          Converting a Matrix<br>
+          to Euler Angles
+        </section>
+        <section>
+          Before we begin, we must know which rotation the matrix performs-
+          object-to-inertial or inertial-to-object.<br>
+          We will return "canonical" Euler angles (range $\pm 180^\circ$, pitch $\pm 90^\circ$).
+          We are doing this because there an infinite number of Euler angles due
+          to aliasing.<br>
+          If a matrix is malformed, we need to be ok with precision errors.<br>
+          We will only be dealing with matrices that work on proper rotation matrices.
+        </section>
+        <section>
+          $M_{inertial \rightarrow object} = HPB$<br>
+          <div style="font-size:0.7em;">
+            $=
+            \left[
+            \begin{smallmatrix}
+            cos\ h\ cos\ b + sin\ h\ sin\ p\ sin\ b &&
+            -cos\ h\ sin\ b + sin\ h\ sin\ p\ cos\ b &&
+            sin\ h\ cos\ p
+            \\
+            sin\ b\ cos\ p && cos\ b\ cos\ p && -sin\ p
+            \\
+            -sin\ h\ cos\ b + cos\ h\ sin\ p\ sin\ b &&
+            sin\ b\ sin\ h + cos\ h\ sin\ p\ cos\ b &&
+            cos\ h\ cos\ p
+            \end{smallmatrix}
+            \right]
+            $
+          </div>
+        </section>
+        <section>
+          Solving for $p$ using $m_{23}$:<br>
+          $m_{23} = -sin\ p$<br>
+          $-m_{23} = sin\ p$<br>
+          $asin(-m_{23}) = p$
+        </section>
+        <section>
+          Assume $cos\ p \neq 0$, then we can solve for $sin\ h$ and $cos\ h$:<br>
+          $m_{13} = sin\ h\ cos\ p$<br>
+          $m_{13} / cos\ p = sin\ h$<br>
+          $m_{33} = cos\ h\ cos\ p$<br>
+          $m_{33} / cos\ p = cos\ h$
+        </section>
+        <section>
+          Using those we can solve for $h$ using $atan2$:<br>
+          $h = atan2(sin\ h, cos\ h)$<br>
+          $h = atan2(m_{13}/cos\ p, m_{33}/cos\ p)$<br>
+          as $cos\ p > 0$ and $atan2(y,x)$ takes the arctangent of the quotient $y/x$,
+          using the signs of the arguments to determine the quadrant, then the divisions
+          do not matter. Thus:<br>
+          $h = atan2(m_{13},m_{33})$
+        </section>
+        <section>
+          Solving for $b$<br>
+          $m_{21} = sin\ b\ cos\ p$<br>
+          $m_{21}/cos\ p = sin\ b$<br>
+          $m_{22} = cos\ b\ cos\ p$<br>
+          $m_{22}/cos\ p = cos\ b$<br>
+          $b = atan2(sin\ b, cos\ b)$<br>
+          $b = atan2(m_{21}/cos\ p, m_{22}/cos\ p)$<br>
+          $b = atan2(m_{21},m_{22})$<br>
+          And now we're done!
+        </section>
+        <section>
+          What if $cos\ p = 0$?<br>
+          We cannot use the trick! If $cos\ p = 0$, we have a Gimbal lock.
+          If we're in that situation, we'll set rotation about
+          the vertical axis to the heading and set bank equal to zero.<br>
+          $cos\ p = 0$<br>
+          $b = 0$<br>
+          $sin\ b = 0$<br>
+          $cos\ b = 1$
+        </section>
+        <section>
+          $M_{inertial \rightarrow object} = HPB$<br>
+          <div style="font-size:0.7em;">
+            $=
+            \left[
+            \begin{smallmatrix}
+            cos\ h\ cos\ b + sin\ h\ sin\ p\ sin\ b &&
+            -cos\ h\ sin\ b + sin\ h\ sin\ p\ cos\ b &&
+            sin\ h\ cos\ p
+            \\
+            sin\ b\ cos\ p && cos\ b\ cos\ p && -sin\ p
+            \\
+            -sin\ h\ cos\ b + cos\ h\ sin\ p\ sin\ b &&
+            sin\ b\ sin\ h + cos\ h\ sin\ p\ cos\ b &&
+            cos\ h\ cos\ p
+            \end{smallmatrix}
+            \right]
+            $
+          </div>
+          <div style="font-size:0.7em;">
+            $=
+            \left[
+            \begin{smallmatrix}
+            cos\ h(1) + sin\ h\ sin\ p(0) && -cos\ h(0) +sin\ h\ sin\ p(1) && sin\ h(0)
+            \\
+            (0)(0) && (1)(0) && -sin\ p
+            \\
+            -sin\ h(1) + cos\ h\ sin\ p(0) && (0)(sin\ h) + cos\ h\ sin\ p(1) && cos\ h(0)
+            \end{smallmatrix}
+            \right]
+            $
+          </div>
+          <div style="font-size:0.7em;">
+            $=
+            \left[
+            \begin{smallmatrix}
+            cos\ h && sin\ h\ sin\ p && 0
+            \\
+            0 && 0 && -sin\ p
+            \\
+            -sin\ h && cos\ h\ sin\ p && 0
+            \end{smallmatrix}
+            \right]
+            $
+          </div>
+        </section>
+        <section>
+          Continued...<br>
+          <div style="font-size:0.7em;">
+            $=
+            \left[
+            \begin{smallmatrix}
+            cos\ h && sin\ h\ sin\ p && 0
+            \\
+            0 && 0 && -sin\ p
+            \\
+            -sin\ h && cos\ h\ sin\ p && 0
+            \end{smallmatrix}
+            \right]
+            $
+          </div>
+          In this scenario, using $-m_{31}$ and $m_{11}$ we can solve for $h$.<br>
+          And we're done again!
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
