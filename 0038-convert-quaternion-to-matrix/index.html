@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Converting 3</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Converting 3<br>
+          Converting a quaternion<br>
+          to a matrix
+        </section>
+        <section>
+          <div style="font-size:0.7em;">
+            Recall episode 12, rotating about an arbitrary axis:<br>
+            $R(n,\theta)
+            =
+            \left[ \begin{smallmatrix}
+            n_x^2(1-cos\ \theta)+ cos\ \theta &&
+            n_xn_y(1-cos\ \theta) - n_z sin\ \theta &&
+            n_xn_z(1-cos\ \theta)+ n_y sin\ \theta
+            \\
+            n_xn_y(1-cos\ \theta)+ n_zsin\ \theta &&
+            n_y^2(1-cos\ \theta) + cos\ \theta &&
+            n_yn_z(1-cos\ \theta)- n_x sin\ \theta
+            \\
+            n_xn_z(1-cos\ \theta)- n_ysin\ \theta &&
+            n_yn_z(1-cos\ \theta) + n_x sin\ \theta &&
+            n_z^2(1-cos\ \theta) + cos\ \theta
+            \end{smallmatrix} \right]
+            $
+          </div>
+        </section>
+        <section>
+          Components of a quaternion:<br>
+          $w = cos(\theta/2)$<br>
+          $x = n_x sin(\theta/2)$<br>
+          $y = n_y sin(\theta/2)$<br>
+          $z = n_z sin(\theta/2)$<br>
+          We are going to derive a formula for the matrix in terms of $w,x,y,z$.
+        </section>
+        <section>
+          Solving for diagonals:<br>
+          $m_{11} = n_x^2(1-cos\ \theta)+ cos\ \theta$<br>
+          $m_{11} = n_x^2- n_x^2cos\ \theta + cos\ \theta$<br>
+          $m_{11} = 1- 1 + n_x^2 - n_x^2cos\ \theta + cos\ \theta$<br>
+          $m_{11} = 1- (1-n_x^2 + n_x^2 cos\ \theta - cos\ \theta)$<br>
+          $m_{11} = 1- (1-cos\ \theta - n_x^2 + n_x^2 cos\ \theta)$<br>
+          $m_{11} = 1- (1 - n_x^2)(1 - cos\ \theta)$
+        </section>
+        <section>
+          Continued...<br>
+          let $\alpha = \theta/2$<br>
+          $cos\ 2\alpha = 1 - 2sin^2\alpha$<br>
+          $cos\ \theta = 1 - 2sin^2(\theta/2)$<br>
+          $m_{11} = 1- (1 - n_x^2)(1 - (1 - 2sin^2(\theta/2)))$<br>
+          $m_{11} = 1- (1 - n_x^2)(2sin^2(\theta/2))$<br>
+        </section>
+        <section>
+          Continued...<br>
+          $m_{11} = 1- (1 - n_x^2)(2sin^2(\theta/2))$<br>
+          $m_{11} = 1- (2sin^2(\theta/2)) - 2n_x^2 sin^2(\theta/2)$<br>
+          $m_{11} = 1- 2sin^2(\theta/2) + 2n_x^2 sin^2(\theta/2)$<br>
+          $m_{11} = 1- 2(1 - cos^2(\theta/2)) + 2n_x^2 sin^2(\theta/2)$<br>
+          $m_{11} = 1- 2 + 2cos^2(\theta/2) + 2n_x^2 sin^2(\theta/2))$<br>
+          $m_{11} = -1+ 2(cos(\theta/2))^2 + 2(n_x sin(\theta/2))^2$<br>
+        </section>
+        <section>
+          Substituting $w$ and $x$:<br>
+          $m_{11} = -1+ 2(cos(\theta/2))^2 + 2(n_x sin(\theta/2))^2$<br>
+          $m_{11} = -1+ 2w^2 + 2x^2$<br>
+        </section>
+        <section>
+          Notes:<br>
+          There are several answers to this form that are equivalent.<br>
+          Others include:<br>
+          $m_{11} = 1 - 2y^2 - 2z^2$<br>
+          $m_{11} = w^2 + x^2 - y^2 - z^2$<br>
+        </section>
+        <section>
+          Solving for non-diagonal:<br>
+          $m_{12} = n_x n_y (1-cos\ \theta) + n_z sin\ \theta$<br>
+          $sin\ 2\alpha = 2 sin\ \alpha \ cos\ \alpha$<br>
+          $sin\ theta = 2 sin(\theta / 2) cos(\theta / 2)$
+        </section>
+        <section>
+          Continued...<br>
+          <div style="font-size:0.7em;">
+            $m_{12} = n_x n_y (1-cos\ \theta) + n_z sin\ \theta$<br>
+            $m_{12} = n_x n_y (1-(1 - 2sin^2(\theta/2))) + n_z(2 sin(\theta / 2) cos(\theta / 2))$<br>
+            $m_{12} = n_x n_y (2 sin^2(\theta / 2)) + 2n_z sin(\theta/2)cos(\theta/2)$<br>
+            $m_{12} = 2(n_xsin(\theta/2))(n_ysin(\theta/2)) + 2cos(\theta/2)(n_zsin(\theta/2))$<br>
+            $m_{12} = 2xy+2wz$
+          </div>
+        </section>
+        <section>
+          After deriving all pieces of the matrix...<br>
+          $
+          \left[
+          \begin{smallmatrix}
+           1-2y^2-2z^2 &&
+           2xy+2wz &&
+           2xz-2wy
+          \\
+           2xy-2wz &&
+           1-2x^2 - 2z^2 &&
+           2yz + 2wx
+          \\
+           2xz + 2wy &&
+           2yz - 2wx &&
+           1-2x^2 - 2y^2
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
