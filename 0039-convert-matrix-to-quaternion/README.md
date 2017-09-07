@@ -15,10 +15,10 @@ View at: http://localhost:8080/
 
 ## CONCEPTS:
 
-* Converting between representations: converting a quaternion to a matrix
+* Converting between representations: converting a matrix to a quaternion
 
 ## RESOURCES:
 
-* Code / Slides: https://github.com/davidwparker/programmingtil-3d-math/tree/master/0038-convert-quaternion-to-matrix
+* Code / Slides: https://github.com/davidwparker/programmingtil-3d-math/tree/master/0039-convert-matrix-to-quaternion
 * Slides JS: https://github.com/hakimel/reveal.js/
 * Math JS: https://www.mathjax.org/
