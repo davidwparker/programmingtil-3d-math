@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Converting 5</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Converting 5<br>
+          Converting Euler Angles <br>
+          to a quaternion
+        </section>
+        <section>
+          For this, we'll convert three rotation angles to quartion format<br>
+          Then we'l concat these together.<br>
+          As per usual, we need to consider inertial-to-object and object-to-inertial.<br>
+          We will only calculate the former.
+        </section>
+        <section>
+          Let $h$, $p$, and $b$ be the quats that rotate around $y$, $x$, and $z$ axes.<br>
+          As per episode 36, we'll use negative rotation amounts.<br>
+        </section>
+        <section>
+          $ h =
+          \left[
+          \begin{smallmatrix}
+          cos(-h/2) \\
+          \left(
+          \begin{smallmatrix}
+          0 \\
+          sin(-h/2) \\
+          0
+          \end{smallmatrix}
+          \right)
+          \end{smallmatrix}
+          \right]
+          =
+          \left[
+          \begin{smallmatrix}
+          cos(h/2) \\
+          \left(
+          \begin{smallmatrix}
+          0 \\
+          -sin(h/2) \\
+          0
+          \end{smallmatrix}
+          \right)
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          $ p =
+          \left[
+          \begin{smallmatrix}
+          cos(-p/2) \\
+          \left(
+          \begin{smallmatrix}
+          sin(-p/2) \\
+          0 \\
+          0
+          \end{smallmatrix}
+          \right)
+          \end{smallmatrix}
+          \right]
+          =
+          \left[
+          \begin{smallmatrix}
+          cos(p/2) \\
+          \left(
+          \begin{smallmatrix}
+          -sin(p/2) \\
+          0 \\
+          0
+          \end{smallmatrix}
+          \right)
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          $ b =
+          \left[
+          \begin{smallmatrix}
+          cos(-b/2) \\
+          \left(
+          \begin{smallmatrix}
+          0 \\
+          0 \\
+          sin(-b/2)
+          \end{smallmatrix}
+          \right)
+          \end{smallmatrix}
+          \right]
+          =
+          \left[
+          \begin{smallmatrix}
+          cos(b/2) \\
+          \left(
+          \begin{smallmatrix}
+          0 \\
+          0 \\
+          -sin(b/2)
+          \end{smallmatrix}
+          \right)
+          \end{smallmatrix}
+          \right]
+          $
+        </section>
+        <section>
+          Concatenating... $hpb =$<br>
+          <div style="font-size:0.7em;">
+            $
+            \left[
+            \begin{smallmatrix}
+            cos(h/2) \\
+            \left(
+            \begin{smallmatrix}
+            0 \\
+            -sin(h/2) \\
+            0
+            \end{smallmatrix}
+            \right)
+            \end{smallmatrix}
+            \right]
+
+            \left[
+            \begin{smallmatrix}
+            cos(p/2) \\
+            \left(
+            \begin{smallmatrix}
+            -sin(p/2) \\
+            0 \\
+            0
+            \end{smallmatrix}
+            \right)
+            \end{smallmatrix}
+            \right]
+
+            \left[
+            \begin{smallmatrix}
+            cos(b/2) \\
+            \left(
+            \begin{smallmatrix}
+            0 \\
+            0 \\
+            -sin(b/2)
+            \end{smallmatrix}
+            \right)
+            \end{smallmatrix}
+            \right]
+            $
+          </div>
+          <div style="font-size:0.7em;">
+            $
+            =
+            \left[
+            \begin{smallmatrix}
+            cos(h/2)cos(p/2)cos(b/2) + sin(h/2)sin(p/2)sin(b/2) \\
+            \left(
+            \begin{smallmatrix}
+            -cos(h/2)sin(p/2)cos(b/2) - sin(h/2)cos(p/2)sin(b/2) \\
+            cos(h/2)sin(p/2)sin(b/2) - sin(h/2)cos(p/2)cos(b/2) \\
+            sin(h/2)sin(p/2)cos(b/2) - cos(h/2)cos(p/2)sin(b/2)
+            \end{smallmatrix}
+            \right)
+            \end{smallmatrix}
+            \right]
+            $
+          </div>
+        </section>
+        <section>
+          To solve for object-to-inertial, we just take the conjugate...<br>
+          <div style="font-size:0.7em;">
+            $
+            =
+            \left[
+            \begin{smallmatrix}
+            cos(h/2)cos(p/2)cos(b/2) + sin(h/2)sin(p/2)sin(b/2) \\
+            \left(
+            \begin{smallmatrix}
+            cos(h/2)sin(p/2)cos(b/2) + sin(h/2)cos(p/2)sin(b/2) \\
+            sin(h/2)cos(p/2)cos(b/2) - cos(h/2)sin(p/2)sin(b/2) \\
+            cos(h/2)cos(p/2)sin(b/2) - sin(h/2)sin(p/2)cos(b/2)
+            \end{smallmatrix}
+            \right)
+            \end{smallmatrix}
+            \right]
+            $
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
