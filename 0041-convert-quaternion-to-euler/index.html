@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Converting 6</title>
+    <meta name="author" content="David W Parker">
+    <meta name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/vendor/reveal.css" rel="stylesheet"  type="text/css">
+    <link href="css/vendor/themes/black.css" rel="stylesheet"  type="text/css">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          Converting 6<br>
+          Converting a quaternion<br>
+          to Euler Angles
+        </section>
+        <section>
+          Rather than deriving the Euler angles from the previous episode's quaternion,
+          we're going to solve via episode 37 dealing with converting a
+          matrix to Euler angles and 38 quaternion to a matrix.
+        </section>
+        <section>
+          $ p = asin(-m_{23})$
+          <br>
+          $ h =
+          \begin{equation}
+          \left\{
+          \begin{array}{ll}
+            atan2(m_{13},m_{33})\ if\ cos\ p \neq 0 \\
+            atan2(-m_{31},m_{11})\ otherwise
+          \end{array}
+          \right.
+          \end{equation}\
+          $
+          <br>
+          $ b =
+          \begin{equation}
+          \left\{
+          \begin{array}{ll}
+            atan2(m_{21},m_{22})\ if\ cos\ p \neq 0 \\
+            0\ otherwise
+          \end{array}
+          \right.
+          \end{equation}\
+          $
+        </section>
+        <section>
+          Matrix elements<br>
+          $m_{23} = 2yz + 2wx$<br>
+          $m_{13} = 2xz - 2wy$<br>
+          $m_{33} = 1 - 2x^2 - 2y^2$<br>
+          $m_{31} = 2xz + 2wy$<br>
+          $m_{11} = 1 - 2y^2 - 2z^2$<br>
+          $m_{21} = 2xy - 2wz$<br>
+          $m_{22} = 1 - 2x^2 - 2z^2$<br>
+        </section>
+        <section>
+          Substituting $p$<br>
+          $ p = asin(-m_{23})$<br>
+          $ p = asin(-2(yz+wx))$
+        </section>
+        <section>
+          Substituting $h$
+          $ h =
+          \begin{equation}
+          \left\{
+          \begin{array}{ll}
+            atan2(m_{13},m_{33})\ if\ cos\ p \neq 0 \\
+            atan2(-m_{31},m_{11})\ otherwise
+          \end{array}
+          \right.
+          \end{equation}\
+          $<br>
+          $ h =
+          \begin{equation}
+          \left\{
+          \begin{array}{ll}
+            atan2(2xz - 2wy, 1 - 2x^2 - 2y^2)\ if\ cos\ p \neq 0 \\
+            atan2(-xz-wy, 1/2 - y^2 - z^2)\ otherwise
+          \end{array}
+          \right.
+          \end{equation}\
+          $
+        </section>
+        <section>
+          Substituting $b$<br>
+          $ b =
+          \begin{equation}
+          \left\{
+          \begin{array}{ll}
+            atan2(m_{21},m_{22})\ if\ cos\ p \neq 0 \\
+            0\ otherwise
+          \end{array}
+          \right.
+          \end{equation}\
+          $<br>
+          $ b =
+          \begin{equation}
+          \left\{
+          \begin{array}{ll}
+            atan2(xy-wz,1/2-x^2-z^2)\ if\ cos\ p \neq 0 \\
+            0\ otherwise
+          \end{array}
+          \right.
+          \end{equation}\
+          $
+        </section>
+        <section>
+          That's it. In a later episode, we'll show this in code.
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="vendor/head.min.js"></script>
+    <script type="text/javascript" src="vendor/reveal.js"></script>
+    <script type="text/javascript" src="libs/vector3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
