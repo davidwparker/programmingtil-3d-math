@@ -1,17 +1,17 @@
 ## STARTING OFF:
 
 Make sure you have npm installed.
-Run:
+From the root project directory, run:
 ```
 npm install http-server -g
 ```
 
-Run:
+From the root project directory, run:
 ```
 http-server
 ```
 
-View at: http://localhost:8080/
+View at: http://localhost:8080/0008-matrices-part-4
 
 ## CONCEPTS:
 
