@@ -1,12 +1,12 @@
 ## STARTING OFF:
 
 Make sure you have npm installed.
-Run:
+From the root project directory, run:
 ```
 npm install http-server -g
 ```
 
-Run:
+From the root project directory, run:
 ```
 http-server
 ```
