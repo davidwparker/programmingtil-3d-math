@@ -1,0 +1,280 @@
+// Empty JS object to represent a 4x4 matrix
+function mat4() {
+  // Standard Objects
+  // create an empty matrix
+  this.create = function() {
+    return this;
+  };
+
+  // create a matrix given array
+  this.createWith = function(arr) {
+    this.m11 = arr[0];
+    this.m12 = arr[1];
+    this.m13 = arr[2];
+    this.m14 = arr[3];
+    this.m21 = arr[4];
+    this.m22 = arr[5];
+    this.m23 = arr[6];
+    this.m24 = arr[7];
+    this.m31 = arr[8];
+    this.m32 = arr[9];
+    this.m33 = arr[10];
+    this.m34 = arr[11];
+    this.t41 = arr[12];
+    this.t42 = arr[13];
+    this.t43 = arr[14];
+    this.t44 = arr[15];
+    return this;
+  };
+
+  // create a matrix given values
+  this.createWithValues = function(
+    m11,
+    m12,
+    m13,
+    m14,
+    m21,
+    m22,
+    m23,
+    m24,
+    m31,
+    m32,
+    m33,
+    m34,
+    t41,
+    t42,
+    t43,
+    t44
+  ) {
+    this.m11 = m11;
+    this.m12 = m12;
+    this.m13 = m13;
+    this.m14 = m14;
+    this.m21 = m21;
+    this.m22 = m22;
+    this.m23 = m23;
+    this.m24 = m24;
+    this.m31 = m31;
+    this.m32 = m32;
+    this.m33 = m33;
+    this.m34 = m34;
+    this.t41 = t41;
+    this.t42 = t42;
+    this.t43 = t43;
+    this.t44 = t44;
+    return this;
+  };
+
+  // Print out values
+  this.print = function() {
+    console.log(
+      [this.m11, this.m12, this.m13, this.m14],
+      [this.m21, this.m22, this.m23, this.m24],
+      [this.m31, this.m32, this.m33, this.m34],
+      [this.t41, this.t42, this.t43, this.t44]
+    );
+  };
+
+  // copy a matrix
+  this.copy = function(copy) {
+    this.m11 = copy.m11;
+    this.m12 = copy.m12;
+    this.m13 = copy.m13;
+    this.m14 = copy.m14;
+    this.m21 = copy.m21;
+    this.m22 = copy.m22;
+    this.m23 = copy.m23;
+    this.m24 = copy.m24;
+    this.m31 = copy.m31;
+    this.m32 = copy.m32;
+    this.m33 = copy.m33;
+    this.m34 = copy.m34;
+    this.t41 = copy.t41;
+    this.t42 = copy.t42;
+    this.t43 = copy.t43;
+    this.t44 = copy.t44;
+    return this;
+  };
+
+  // Equality
+  this.equals = function(copy) {
+    return (
+      this.m11 == copy.m11 &&
+      this.m12 == copy.m12 &&
+      this.m13 == copy.m13 &&
+      this.m14 == copy.m14 &&
+      this.m21 == copy.m21 &&
+      this.m22 == copy.m22 &&
+      this.m23 == copy.m23 &&
+      this.m24 == copy.m24 &&
+      this.m31 == copy.m31 &&
+      this.m32 == copy.m32 &&
+      this.m33 == copy.m33 &&
+      this.m34 == copy.m34 &&
+      this.t41 == copy.t41 &&
+      this.t42 == copy.t42 &&
+      this.t43 == copy.t43 &&
+      this.t44 == copy.t44
+    );
+  };
+
+  // Equality strict
+  this.equalsStrict = function(copy) {
+    return (
+      this.m11 === copy.m11 &&
+      this.m12 === copy.m12 &&
+      this.m13 === copy.m13 &&
+      this.m14 === copy.m14 &&
+      this.m21 === copy.m21 &&
+      this.m22 === copy.m22 &&
+      this.m23 === copy.m23 &&
+      this.m24 === copy.m24 &&
+      this.m31 === copy.m31 &&
+      this.m32 === copy.m32 &&
+      this.m33 === copy.m33 &&
+      this.m34 === copy.m34 &&
+      this.t41 === copy.t41 &&
+      this.t42 === copy.t42 &&
+      this.t43 === copy.t43 &&
+      this.t44 === copy.t44
+    );
+  };
+
+  // Operations
+  // Identity Matrix
+  this.identity = function() {
+    this.m11 = this.m22 = this.m33 = this.t44 = 1;
+    this.m12 = this.m13 = this.m14 = 0;
+    this.m21 = this.m23 = this.m24 = 0;
+    this.m31 = this.m32 = this.m34 = 0;
+    this.t41 = this.t42 = this.t43 = 0;
+    return this;
+  };
+
+  this.zeroTranslation = function() {
+    this.t41 = this.t42 = this.t43 = this.t44 = 0;
+    return this;
+  };
+
+  this.setTranslation = function(vec3) {
+    this.t41 = vec3.x;
+    this.t42 = vec3.y;
+    this.t43 = vec3.z;
+    return this;
+  };
+
+  // Operations that return scalars
+  // compute the 3x3 portion of the determinant
+  this.determinant = function() {
+    return (
+      this.m11 * (this.m22 * this.m33 - this.m23 * this.m32) +
+      this.m12 * (this.m23 * this.m31 - this.m21 * this.m33) +
+      this.m13 * (this.m21 * this.m32 - this.m22 * this.m31)
+    );
+  };
+
+  // compute the 3x3 portion of the inverse
+  this.inverse = function() {
+    var det = this.determinant();
+    console.assert(Math.abs(det) > 0.0000001);
+    var oneOverDet = 1.0 / det;
+    var mat = new mat4().create();
+    mat.m11 = (this.m22 * this.m33 - this.m23 * this.m32) * oneOverDet;
+    mat.m12 = (this.m13 * this.m32 - this.m12 * this.m33) * oneOverDet;
+    mat.m13 = (this.m12 * this.m23 - this.m13 * this.m22) * oneOverDet;
+
+    mat.m21 = (this.m23 * this.m31 - this.m21 * this.m33) * oneOverDet;
+    mat.m22 = (this.m11 * this.m33 - this.m13 * this.m31) * oneOverDet;
+    mat.m23 = (this.m13 * this.m21 - this.m11 * this.m23) * oneOverDet;
+
+    mat.m31 = (this.m21 * this.m32 - this.m22 * this.m31) * oneOverDet;
+    mat.m32 = (this.m12 * this.m31 - this.m11 * this.m32) * oneOverDet;
+    mat.m33 = (this.m11 * this.m22 - this.m12 * this.m21) * oneOverDet;
+
+    mat.t41 = this.m22 * this.m33 - this.m23 * this.m32;
+    mat.t42 = this.m22 * this.m33 - this.m23 * this.m32;
+    mat.t43 = this.m22 * this.m33 - this.m23 * this.m32;
+    return mat;
+  };
+
+  this.scale = function(scalar) {
+    this.m11 *= scalar;
+    this.m12 *= scalar;
+    this.m13 *= scalar;
+    this.m21 *= scalar;
+    this.m22 *= scalar;
+    this.m23 *= scalar;
+    this.m31 *= scalar;
+    this.m32 *= scalar;
+    this.m33 *= scalar;
+    return this;
+  };
+
+  this.scaleVec3 = function(vec3) {
+    this.m11 *= vec3.x;
+    this.m12 *= vec3.x;
+    this.m13 *= vec3.x;
+    this.m21 *= vec3.y;
+    this.m22 *= vec3.y;
+    this.m23 *= vec3.y;
+    this.m31 *= vec3.z;
+    this.m32 *= vec3.z;
+    this.m33 *= vec3.z;
+    return this;
+  };
+
+  // Matrix multiplication /
+  this.multiply = function(that) {
+    var mat = new mat4().create();
+    console.log(
+      this.m11 * that.m11 + this.m12 * that.m21 + this.m13 * that.m31
+    );
+    mat.m11 = this.m11 * that.m11 + this.m12 * that.m21 + this.m13 * that.m31;
+    mat.m12 = this.m11 * that.m12 + this.m12 * that.m22 + this.m13 * that.m32;
+    mat.m13 = this.m11 * that.m13 + this.m12 * that.m23 + this.m13 * that.m33;
+    mat.m21 = this.m21 * that.m11 + this.m22 * that.m21 + this.m23 * that.m31;
+    mat.m22 = this.m21 * that.m12 + this.m22 * that.m22 + this.m23 * that.m32;
+    mat.m23 = this.m21 * that.m13 + this.m22 * that.m23 + this.m23 * that.m33;
+    mat.m31 = this.m31 * that.m11 + this.m32 * that.m21 + this.m33 * that.m31;
+    mat.m32 = this.m31 * that.m12 + this.m32 * that.m22 + this.m33 * that.m32;
+    mat.m33 = this.m31 * that.m13 + this.m32 * that.m23 + this.m33 * that.m33;
+    mat.t41 =
+      this.t41 * that.m11 +
+      this.t42 * that.m21 +
+      this.t43 * that.m31 +
+      that.t41;
+    mat.t42 =
+      this.t41 * that.m12 +
+      this.t42 * that.m22 +
+      this.t43 * that.m32 +
+      that.t42;
+    mat.t43 =
+      this.t41 * that.m13 +
+      this.t42 * that.m23 +
+      this.t43 * that.m33 +
+      that.t42;
+    return mat;
+  };
+
+  this.transpose = function() {
+    var a12 = this.m12,
+      a13 = this.m13,
+      a14 = this.m14,
+      a23 = this.m23,
+      a24 = this.m24,
+      a34 = this.m34;
+    this.m12 = this.m21;
+    this.m13 = this.m31;
+    this.m14 = this.t41;
+    this.m21 = a12;
+    this.m23 = this.m32;
+    this.m24 = this.t42;
+    this.m31 = a13;
+    this.m32 = a23;
+    this.m34 = this.t43;
+    this.t41 = a14;
+    this.t42 = a24;
+    this.t43 = a34;
+    return this;
+  };
+}
