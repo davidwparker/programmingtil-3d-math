@@ -11,14 +11,14 @@ From the root project directory, run:
 http-server
 ```
 
-View at: http://localhost:8080/0042-code-matrix-1
+View at: http://localhost:8080/0043-code-matrix-2
 
 ## CONCEPTS:
 
-* Matrix code part 1: Creation, copy, equality, identity, zero and set translation
+* Matrix code part 2: Determinant, Inverse, Scalar multiplication, Matrix multiplication, transpose
 
 ## RESOURCES:
 
-* Code / Slides: https://github.com/davidwparker/programmingtil-3d-math/tree/master/0042-code-matrix-1
+* Code / Slides: https://github.com/davidwparker/programmingtil-3d-math/tree/master/0043-code-matrix-2
 * Slides JS: https://github.com/hakimel/reveal.js/
 * Math JS: https://www.mathjax.org/
