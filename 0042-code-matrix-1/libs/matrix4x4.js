@@ -165,11 +165,13 @@ function mat4() {
 
   this.zeroTranslation = function() {
     this.t41 = this.t42 = this.t43 = this.t44 = 0;
+    return this;
   };
 
   this.setTranslation = function(vec3) {
     this.t41 = vec3.x;
     this.t42 = vec3.y;
     this.t43 = vec3.z;
+    return this;
   };
 }
