@@ -22,13 +22,13 @@ function runCode() {
   var c = new mat4().identity();
   c.print();
 
-  console.log('Zero Transation');
+  console.log('Zero Translation');
   var d = new mat4().createWith(arr1);
   d.print();
   d.zeroTranslation();
   d.print();
 
-  console.log('Set Transation');
+  console.log('Set Translation');
   var d = new mat4().createWith(arr1);
   var v = new vec3().createWith(11, 12, 13);
   d.print();

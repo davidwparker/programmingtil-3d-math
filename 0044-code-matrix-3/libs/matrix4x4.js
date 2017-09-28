@@ -75,6 +75,27 @@ function mat4() {
     );
   };
 
+  this.printSingle = function() {
+    console.log(
+      this.m11,
+      this.m12,
+      this.m13,
+      this.m14,
+      this.m21,
+      this.m22,
+      this.m23,
+      this.m24,
+      this.m31,
+      this.m32,
+      this.m33,
+      this.m34,
+      this.t41,
+      this.t42,
+      this.t43,
+      this.t44
+    );
+  };
+
   // copy a matrix
   this.copy = function(copy) {
     this.m11 = copy.m11;
@@ -161,6 +182,17 @@ function mat4() {
     this.t42 = vec3.y;
     this.t43 = vec3.z;
     return this;
+  };
+
+  this.translateBy = function(vec3) {
+    this.t41 += vec3.x;
+    this.t42 += vec3.y;
+    this.t43 += vec3.z;
+    return this;
+  };
+
+  this.getTranslation = function(vec3) {
+    return [this.t41, this.t42, this.t43];
   };
 
   // Operations that return scalars
@@ -280,4 +312,88 @@ function mat4() {
     this.t43 = a34;
     return this;
   };
+
+  this.add = function(that) {
+    this.m11 = this.m11 + that.m11;
+    this.m12 = this.m12 + that.m12;
+    this.m13 = this.m13 + that.m13;
+    this.m14 = this.m14 + that.m14;
+    this.m21 = this.m21 + that.m21;
+    this.m22 = this.m22 + that.m22;
+    this.m23 = this.m23 + that.m23;
+    this.m24 = this.m24 + that.m24;
+    this.m31 = this.m31 + that.m31;
+    this.m32 = this.m32 + that.m32;
+    this.m33 = this.m33 + that.m33;
+    this.m34 = this.m34 + that.m34;
+    this.t41 = this.t41 + that.t41;
+    this.t42 = this.t42 + that.t42;
+    this.t43 = this.t43 + that.t43;
+    this.t44 = this.t44 + that.t44;
+    return this;
+  };
+
+  this.subtract = function(that) {
+    this.m11 = this.m11 - that.m11;
+    this.m12 = this.m12 - that.m12;
+    this.m13 = this.m13 - that.m13;
+    this.m14 = this.m14 - that.m14;
+    this.m21 = this.m21 - that.m21;
+    this.m22 = this.m22 - that.m22;
+    this.m23 = this.m23 - that.m23;
+    this.m24 = this.m24 - that.m24;
+    this.m31 = this.m31 - that.m31;
+    this.m32 = this.m32 - that.m32;
+    this.m33 = this.m33 - that.m33;
+    this.m34 = this.m34 - that.m34;
+    this.t41 = this.t41 - that.t41;
+    this.t42 = this.t42 - that.t42;
+    this.t43 = this.t43 - that.t43;
+    this.t44 = this.t44 - that.t44;
+    return this;
+  };
+
+  // Episode 12
+  this.setRotate = function(theta, axis) {
+    var x = axis.x;
+    var y = axis.y;
+    var z = axis.z;
+    var len = Math.sqrt(x * x + y * y + z * z);
+
+    // Ensure small enough and unit vector
+    if (Math.abs(len) < 0.000001) {
+      return null;
+    }
+
+    len = 1 / len;
+    x *= len;
+    y *= len;
+    z *= len;
+    var s = Math.sin(theta);
+    var c = Math.cos(theta);
+
+    // compute 1 - cos(theta) and more
+    var a = 1 - c;
+    var ax = a * x;
+    var ay = a * y;
+    var az = a * z;
+
+    // oh my, it's the rotation matrix elements
+    this.m11 = x * ax + c;
+    this.m12 = y * ax + z * s;
+    this.m13 = z * ax - y * s;
+    this.m21 = x * ay - z * s;
+    this.m22 = y * ay + c;
+    this.m23 = z * ay + x * s;
+    this.m31 = x * az + y * s;
+    this.m32 = y * az - x * s;
+    this.m33 = z * az + c;
+    return this;
+  };
+
+  // Still to come (and a whole lot more...)
+  // rotate
+  // rotateX
+  // rotateY
+  // rotateZ
 }
