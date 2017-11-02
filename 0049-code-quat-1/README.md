@@ -15,8 +15,23 @@ View at: http://localhost:8080/0049-code-quat-1
 
 ## CONCEPTS:
 
-* Matrix code part 8: perspective projection
+* Quaternion code part 1: Introduction
 
+* Quaternion (math episode / code episode):
+  * Notation (ep 27 / 49)
+  * Axis-Angle Pair (ep 27 / 49)
+  * Negation (ep 27 / 49)
+  * Identity (ep 28 / 49)
+  * Magnitude (ep 28 / ?)
+  * Conjugate (ep 28 / ?)
+  * Multiplication (Cross Product) (ep 29 / ?)
+  * Dot Product (ep 30 / ?)
+  * Log (ep 31 / ?)
+  * Exp (ep 31 / ?)
+  * Multiplication with Scalar (ep 31 / ?)
+  * Exponentiation (ep 32 / ?)
+  * Interpolation (Slerp) (ep 33 / ?)
+  * Splines (Squad) (ep 34 / ?)
 * Matrix (math episode / code episode):
   * transposition (ep 8 / 43)
   * scalar multiplication (e p8 / 43)
@@ -32,15 +47,10 @@ View at: http://localhost:8080/0049-code-quat-1
   * determinant (ep 19-20 / 43)
   * inverse (ep 21 / 43)
   * adjoint (ep 21 / 46)
-  * perspective projection onto a plane (ep 24 / todo)
-* Quaternion (math episode / code episode):
-  * TODO
+  * perspective projection onto a plane (ep 24 / ?)
 
 ## RESOURCES:
 
 * Code / Slides: https://github.com/davidwparker/programmingtil-3d-math/tree/master/0049-code-quat-1
 * Slides JS: https://github.com/hakimel/reveal.js/
 * Math JS: https://www.mathjax.org/
-* https://en.wikipedia.org/wiki/Perspective_(graphical)
-* https://en.wikipedia.org/wiki/Transformation_matrix#Perspective_projection
-* https://en.wikipedia.org/wiki/3D_projection#Perspective_projection
